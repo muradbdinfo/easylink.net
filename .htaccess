@@ -1,0 +1,19 @@
+# This file belongs at the PROJECT ROOT (same level as app/, vendor/,
+# public/) - i.e. public_html/.htaccess on the server, NOT inside public/.
+#
+# It routes every request through public/ (Laravel's real front door)
+# without needing to change the hosting account's Document Root setting.
+# Anything that isn't a real file inside public/ (app/, vendor/, config/,
+# database/, storage/, .env, composer.json, ...) becomes unreachable from
+# the web: the request gets rewritten into public/, doesn't match a real
+# file there, and Laravel's own router returns a normal 404 instead of
+# ever showing the raw file or a directory listing.
+
+# Belt-and-braces: disable directory listing even if the rewrite below
+# somehow doesn't apply (e.g. mod_rewrite disabled).
+Options -Indexes
+
+<IfModule mod_rewrite.c>
+    RewriteEngine On
+    RewriteRule ^(.*)$ public/$1 [L]
+</IfModule>

@@ -1,0 +1,86 @@
+name: Deploy to cPanel
+
+on:
+  push:
+    branches:
+      - main
+  workflow_dispatch: {}
+
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Setup PHP
+        uses: shivammathur/setup-php@v2
+        with:
+          php-version: "8.4"
+          extensions: mbstring, bcmath, ctype, curl, dom, fileinfo, json, mysqli, openssl, pdo, tokenizer, xml
+          coverage: none
+
+      # muradbdinfo/laravelai is a private repo owned separately from this
+      # one, which made CI auth for it unreliable. It's now vendored
+      # directly into packages/muradbdinfo/laravelai and wired up as a
+      # composer "path" repository (see composer.json), so no GitHub
+      # token/auth is needed here at all.
+      - name: Install Composer dependencies
+        run: composer install --no-dev --optimize-autoloader --no-interaction --no-progress
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+          cache: "npm"
+
+      - name: Install NPM dependencies
+        run: npm ci
+
+      - name: Build front-end assets
+        run: npm run build
+
+      # Laravel needs a valid .env locally just to let a few build-time
+      # commands work; the real .env already lives on the server and is
+      # never uploaded (see the exclude list below).
+      - name: Prepare dummy .env for build step
+        run: cp .env.example .env
+
+      # Zip the whole deployable tree into ONE file instead of shipping
+      # thousands of individual files over FTP (that took over an hour on
+      # this host and still failed/timed out). server-dir must be the app
+      # folder that sits OUTSIDE the public web root (e.g.
+      # FTP_SERVER_DIR=/easylink_app/), with the domain's Document Root
+      # pointed at <that folder>/public in cPanel. Do NOT point this at
+      # public_html directly - that would expose app/, vendor/, config/,
+      # etc. to the internet again.
+      - name: Create deploy archive
+        run: |
+          zip -rq "$RUNNER_TEMP/deploy-incoming.zip" . \
+            -x ".git/*" ".github/*" "node_modules/*" "tests/*" \
+            -x ".env" ".env.example" ".env.production" \
+            -x "storage/app/*" "storage/logs/*" \
+            -x "storage/framework/cache/*" "storage/framework/sessions/*" "storage/framework/views/*" \
+            -x "README.md" "phpunit.xml" \
+            -x "packages/*/tests/*" "packages/*/.github/*"
+
+      - name: Upload deploy archive via FTP
+        run: |
+          curl --ftp-ssl -k --fail-with-body -sS \
+            -T "$RUNNER_TEMP/deploy-incoming.zip" \
+            --user "${{ secrets.FTP_USERNAME }}:${{ secrets.FTP_PASSWORD }}" \
+            "ftp://${{ secrets.FTP_SERVER }}${{ secrets.FTP_SERVER_DIR }}deploy-incoming.zip"
+
+      # public/deploy-hook.php extracts deploy-incoming.zip over the app
+      # root, then runs migrate/config-cache/route-cache/view-cache - since
+      # this host has no SSH/Terminal access to run `php artisan` directly.
+      # Requires DEPLOY_HOOK_URL (e.g. https://easylink.net/deploy-hook.php)
+      # and DEPLOY_HOOK_TOKEN secrets, matching DEPLOY_HOOK_TOKEN in the
+      # server's .env.
+      - name: Run post-deploy hook (extract + migrate + cache)
+        run: |
+          curl --fail-with-body -sS \
+            -X POST \
+            -H "Authorization: Bearer ${{ secrets.DEPLOY_HOOK_TOKEN }}" \
+            "${{ secrets.DEPLOY_HOOK_URL }}"
