@@ -7,6 +7,7 @@ defineProps({
     posts: Object,
 });
 
+const cover = (post) => (post.image ? `/storage/${post.image}` : `/images/blog-${(post.id % 3) + 1}.svg`);
 const formatDate = (d) => new Date(d).toLocaleDateString('en-GB', { day: 'numeric', month: 'short', year: 'numeric' });
 </script>
 
@@ -20,8 +21,8 @@ const formatDate = (d) => new Date(d).toLocaleDateString('en-GB', { day: 'numeri
             <div class="container-x">
                 <div class="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
                     <Link v-for="post in posts.data" :key="post.id" :href="route('blog.show', post.slug)" class="card group overflow-hidden transition hover:-translate-y-1 hover:shadow-xl">
-                        <div class="relative h-48 overflow-hidden bg-gradient-to-br from-brand-700 via-brand-900 to-accent-600">
-                            <div class="grid-bg absolute inset-0 opacity-50" />
+                        <div class="h-48 overflow-hidden bg-brand-900">
+                            <img :src="cover(post)" :alt="post.title" loading="lazy" class="h-full w-full object-cover transition duration-500 group-hover:scale-105" />
                         </div>
                         <div class="p-6">
                             <p class="text-xs font-medium text-slate-400">{{ formatDate(post.published_at) }}</p>

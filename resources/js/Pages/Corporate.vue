@@ -28,11 +28,14 @@ const highlights = ['1:1 dedicated bandwidth', '99.9% uptime SLA', 'Redundant ne
                     <p class="mt-5 text-lg text-slate-300">Dedicated bandwidth, SLA guarantees, DDoS protection and 24/7 NOC monitoring — a complete connectivity solution.</p>
                     <Link :href="route('contact.index')" class="btn-primary mt-9">Get a free consultation</Link>
                 </div>
+                <div>
+                <img src="/images/corporate.svg" alt="Corporate network infrastructure" class="mb-4 aspect-[16/9] w-full rounded-3xl object-cover shadow-2xl ring-1 ring-white/10" />
                 <div class="grid grid-cols-2 gap-4">
                     <div v-for="item in highlights" :key="item" class="flex items-start gap-3 rounded-2xl border border-white/10 bg-white/5 p-5 text-sm font-semibold backdrop-blur">
                         <Icon name="check" class="h-5 w-5 shrink-0 text-brand-300" />
                         {{ item }}
                     </div>
+                </div>
                 </div>
             </div>
         </section>

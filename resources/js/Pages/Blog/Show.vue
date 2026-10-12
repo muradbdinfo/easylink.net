@@ -7,6 +7,7 @@ defineProps({
     recent: Array,
 });
 
+const cover = (post) => (post.image ? `/storage/${post.image}` : `/images/blog-${(post.id % 3) + 1}.svg`);
 const formatDate = (d) => new Date(d).toLocaleDateString('en-GB', { day: 'numeric', month: 'long', year: 'numeric' });
 </script>
 
@@ -26,7 +27,10 @@ const formatDate = (d) => new Date(d).toLocaleDateString('en-GB', { day: 'numeri
 
         <section class="py-20">
             <div class="container-x grid grid-cols-1 gap-12 lg:grid-cols-3">
-                <article class="whitespace-pre-line text-lg leading-relaxed text-slate-600 lg:col-span-2">{{ post.content }}</article>
+                <div class="lg:col-span-2">
+                <img :src="cover(post)" :alt="post.title" class="mb-10 aspect-[16/9] w-full rounded-3xl object-cover shadow-lg" />
+                <article class="whitespace-pre-line text-lg leading-relaxed text-slate-600 ">{{ post.content }}</article>
+                </div>
 
                 <aside v-if="recent.length" class="space-y-4">
                     <h3 class="text-xs font-semibold uppercase tracking-widest text-slate-400">Recent posts</h3>

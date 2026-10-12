@@ -59,7 +59,7 @@ const navGroups = [
             :class="{ 'translate-x-0': sidebarOpen }"
         >
             <Link :href="route('admin.dashboard')" class="flex h-16 shrink-0 items-center gap-2 border-b border-white/10 px-4">
-                <span class="flex h-9 w-9 items-center justify-center rounded-lg bg-accent-500 text-sm font-bold text-white">E</span>
+                <span class="flex h-9 w-9 items-center justify-center rounded-lg bg-white p-0.5"><img src="/images/logo-mark.png" alt="EasyLink" class="h-full w-full object-contain" /></span>
                 <span class="text-sm font-bold tracking-wide text-white">EASYLINK <span class="block text-[10px] font-normal text-slate-400">ADMIN PANEL</span></span>
             </Link>
 

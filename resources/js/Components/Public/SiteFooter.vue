@@ -25,8 +25,7 @@ const social = computed(() =>
         <div class="container-x relative grid grid-cols-1 gap-10 py-16 sm:grid-cols-2 lg:grid-cols-4">
             <div>
                 <div class="flex items-center gap-2.5">
-                    <img v-if="settings.logo" :src="settings.logo" alt="Logo" class="h-10 w-10 rounded-xl object-contain" />
-                    <span v-else class="flex h-10 w-10 items-center justify-center rounded-xl bg-gradient-to-br from-brand-500 to-accent-500 text-lg font-extrabold text-white">E</span>
+                    <span class="flex h-12 w-12 items-center justify-center rounded-xl bg-white p-1"><img :src="settings.logo || '/images/logo-mark.png'" alt="EasyLink logo" class="h-full w-full object-contain" /></span>
                     <span class="font-display text-xl font-extrabold text-white">{{ settings.site_name || 'EasyLink' }}</span>
                 </div>
                 <p class="mt-4 text-sm leading-relaxed text-slate-400">{{ settings.tagline }}</p>

@@ -31,13 +31,16 @@ const toggleFaq = (id) => (openFaq.value = openFaq.value === id ? null : id);
                     <h2 class="section-title mt-4">Who we are</h2>
                     <p class="mt-5 whitespace-pre-line text-lg leading-relaxed text-slate-600">{{ settings.about_text }}</p>
                 </div>
-                <div class="grid grid-cols-2 gap-5">
+                <div>
+                    <img src="/images/about.svg" alt="EasyLink network across Bangladesh" loading="lazy" class="mb-5 aspect-[16/10] w-full rounded-3xl object-cover shadow-xl" />
+                    <div class="grid grid-cols-2 gap-5">
                     <div v-for="stat in stats" :key="stat.id" class="card flex flex-col items-center p-7 text-center">
                         <span class="flex h-12 w-12 items-center justify-center rounded-2xl bg-brand-50 text-brand-600">
                             <Icon :name="stat.icon" class="h-6 w-6" />
                         </span>
                         <span class="mt-3 font-display text-3xl font-extrabold text-brand-900">{{ stat.value }}{{ stat.suffix }}</span>
                         <span class="text-sm text-slate-500">{{ stat.label }}</span>
+                    </div>
                     </div>
                 </div>
             </div>

@@ -1,5 +1,4 @@
 <script setup>
-import ApplicationLogo from '@/Components/ApplicationLogo.vue';
 import { Link } from '@inertiajs/vue3';
 </script>
 
@@ -9,7 +8,7 @@ import { Link } from '@inertiajs/vue3';
     >
         <div>
             <Link href="/">
-                <ApplicationLogo class="h-20 w-20 fill-current text-gray-500" />
+                <img src="/images/logo-full.png" alt="EasyLink" class="h-24 w-auto object-contain" />
             </Link>
         </div>
 

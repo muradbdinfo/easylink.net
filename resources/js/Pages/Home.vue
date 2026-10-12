@@ -37,6 +37,7 @@ const reasons = [
     { icon: 'map', title: 'Nationwide coverage', desc: 'Fiber reaching all 64 districts of Bangladesh.' },
 ];
 
+const cover = (post) => (post.image ? `/storage/${post.image}` : `/images/blog-${(post.id % 3) + 1}.svg`);
 const formatDate = (d) => new Date(d).toLocaleDateString('en-GB', { day: 'numeric', month: 'short', year: 'numeric' });
 </script>
 
@@ -200,12 +201,15 @@ const formatDate = (d) => new Date(d).toLocaleDateString('en-GB', { day: 'numeri
                         </div>
                     </div>
                 </div>
-                <div class="rounded-3xl border border-white/10 bg-white/5 p-9 backdrop-blur">
+                <div class="overflow-hidden rounded-3xl border border-white/10 bg-white/5 backdrop-blur">
+                    <img src="/images/router.svg" alt="EasyLink fiber router" loading="lazy" class="h-56 w-full object-cover" />
+                    <div class="p-9">
                     <h3 class="text-2xl font-bold">Get a free quote</h3>
                     <p class="mt-3 text-slate-300">Tell us your location and needs — our team will get back to you shortly.</p>
                     <div class="mt-7 flex flex-wrap gap-3">
                         <Link :href="route('contact.index')" class="btn-primary">Contact us now</Link>
                         <Link :href="route('coverage.index')" class="btn-outline">Check coverage</Link>
+                    </div>
                     </div>
                 </div>
             </div>
@@ -254,8 +258,8 @@ const formatDate = (d) => new Date(d).toLocaleDateString('en-GB', { day: 'numeri
                 </div>
                 <div class="mt-14 grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
                     <Link v-for="post in posts" :key="post.id" :href="route('blog.show', post.slug)" class="card group overflow-hidden transition hover:-translate-y-1 hover:shadow-xl">
-                        <div class="relative h-44 overflow-hidden bg-gradient-to-br from-brand-700 via-brand-900 to-accent-600">
-                            <div class="grid-bg absolute inset-0 opacity-50" />
+                        <div class="relative h-44 overflow-hidden bg-brand-900">
+                            <img :src="cover(post)" :alt="post.title" loading="lazy" class="h-full w-full object-cover transition duration-500 group-hover:scale-105" />
                         </div>
                         <div class="p-6">
                             <p v-if="post.published_at" class="text-xs font-medium text-slate-400">{{ formatDate(post.published_at) }}</p>

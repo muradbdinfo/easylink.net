@@ -50,8 +50,7 @@ const isActive = (href) => page.url === new URL(href, window.location.origin).pa
 
         <div class="container-x flex h-[72px] items-center justify-between">
             <Link :href="route('home')" class="flex items-center gap-2.5">
-                <img v-if="settings.logo" :src="settings.logo" alt="Logo" class="h-10 w-10 rounded-xl object-contain" />
-                <span v-else class="flex h-10 w-10 items-center justify-center rounded-xl bg-gradient-to-br from-brand-500 to-accent-500 text-lg font-extrabold text-white shadow-lg shadow-brand-500/30">E</span>
+                <img :src="settings.logo || '/images/logo-mark.png'" alt="EasyLink logo" class="h-12 w-12 object-contain" />
                 <span class="font-display text-xl font-extrabold tracking-tight text-brand-900">{{ settings.site_name || 'EasyLink' }}</span>
             </Link>
 
