@@ -50,6 +50,42 @@ if ($_SERVER['REQUEST_METHOD'] !== 'POST' || $providedToken === '' || ! hash_equ
 // individual file transfers, and doesn't need any shell/SSH access.
 $zipPath = base_path('deploy-incoming.zip');
 
+// No FTP needed: when no archive was uploaded, the server pulls the latest build
+// that GitHub Actions published as a release asset (the repo is public, so no token).
+// You can still upload deploy-incoming.zip by hand (cPanel File Manager) - it wins if present.
+const DEPLOY_ZIP_URL = 'https://github.com/muradbdinfo/easylink.net/releases/download/deploy-latest/deploy-incoming.zip';
+
+if (! file_exists($zipPath)) {
+    set_time_limit(600);
+    echo "No uploaded archive found - downloading the latest build from GitHub...\n";
+
+    $part = $zipPath.'.part';
+    $ok = false;
+
+    if (function_exists('curl_init')) {
+        $fh = fopen($part, 'wb');
+        $ch = curl_init(DEPLOY_ZIP_URL);
+        curl_setopt_array($ch, [CURLOPT_FILE => $fh, CURLOPT_FOLLOWLOCATION => true, CURLOPT_TIMEOUT => 580, CURLOPT_CONNECTTIMEOUT => 30, CURLOPT_FAILONERROR => true]);
+        $ok = curl_exec($ch) !== false;
+        if (! $ok) {
+            echo 'Download failed: '.curl_error($ch)."\n";
+        }
+        curl_close($ch);
+        fclose($fh);
+    } else {
+        $ctx = stream_context_create(['http' => ['follow_location' => 1, 'timeout' => 580]]);
+        $ok = @copy(DEPLOY_ZIP_URL, $part, $ctx);
+    }
+
+    if ($ok && filesize($part) > 1024) {
+        rename($part, $zipPath);
+        echo 'Downloaded '.round(filesize($zipPath) / 1048576, 1)." MB.\n";
+    } else {
+        @unlink($part);
+        echo "Could not download a build - continuing with the files already on the server.\n";
+    }
+}
+
 if (file_exists($zipPath)) {
     echo "Extracting deploy-incoming.zip...\n";
 
@@ -128,7 +164,7 @@ function syncDirRecursive(string $from, string $to): void
 
 echo "Syncing public assets into web root...\n";
 
-foreach (['build', 'images', 'logo'] as $dir) {
+foreach (['build', 'images', 'logo', 'tinymce'] as $dir) {
     syncDirRecursive(base_path('public/'.$dir), __DIR__.'/'.$dir);
     echo "  synced {$dir}/\n";
 }

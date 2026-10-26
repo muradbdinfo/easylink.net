@@ -6,6 +6,10 @@ on:
       - main
   workflow_dispatch: {}
 
+# contents: write lets the job publish the build as a GitHub release asset.
+permissions:
+  contents: write
+
 jobs:
   build-and-deploy:
     runs-on: ubuntu-latest
@@ -65,9 +69,23 @@ jobs:
             -x "README.md" "phpunit.xml" \
             -x "packages/*/tests/*" "packages/*/.github/*"
 
-      - name: Upload deploy archive via FTP
+      # The server pulls this file itself (deploy-hook.php), so no FTP port is needed.
+      # The release is a rolling "deploy-latest" one; each run replaces the zip.
+      - name: Publish deploy archive as a GitHub release asset
+        env:
+          GH_TOKEN: ${{ github.token }}
         run: |
-          curl --ftp-ssl -k --fail-with-body -sS \
+          gh release view deploy-latest >/dev/null 2>&1 || \
+            gh release create deploy-latest --prerelease --title "Latest deploy build" \
+              --notes "Automated build downloaded by public/deploy-hook.php on the server. Do not edit."
+          gh release upload deploy-latest "$RUNNER_TEMP/deploy-incoming.zip" --clobber
+
+      # Optional old path. Many hosts block GitHub's servers on FTP port 21, so a
+      # failure here is no longer fatal - the hook downloads the zip from the release instead.
+      - name: Upload deploy archive via FTP (optional)
+        continue-on-error: true
+        run: |
+          curl --ftp-ssl -k --fail-with-body -sS --connect-timeout 30 --max-time 900 \
             -T "$RUNNER_TEMP/deploy-incoming.zip" \
             --user "${{ secrets.FTP_USERNAME }}:${{ secrets.FTP_PASSWORD }}" \
             "ftp://${{ secrets.FTP_SERVER }}${{ secrets.FTP_SERVER_DIR }}deploy-incoming.zip"
@@ -78,9 +96,9 @@ jobs:
       # Requires DEPLOY_HOOK_URL (e.g. https://easylink.net/deploy-hook.php)
       # and DEPLOY_HOOK_TOKEN secrets, matching DEPLOY_HOOK_TOKEN in the
       # server's .env.
-      - name: Run post-deploy hook (extract + migrate + cache)
+      - name: Run post-deploy hook (download + extract + migrate + cache)
         run: |
-          curl --fail-with-body -sS \
+          curl --fail-with-body -sS --max-time 900 \
             -X POST \
             -H "Authorization: Bearer ${{ secrets.DEPLOY_HOOK_TOKEN }}" \
             "${{ secrets.DEPLOY_HOOK_URL }}"
