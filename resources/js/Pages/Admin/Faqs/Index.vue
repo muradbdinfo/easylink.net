@@ -3,6 +3,7 @@ import AdminCard from '@/Components/Admin/AdminCard.vue';
 import Checkbox from '@/Components/Checkbox.vue';
 import InputError from '@/Components/InputError.vue';
 import InputLabel from '@/Components/InputLabel.vue';
+import RichEditor from '@/Components/Admin/RichEditor.vue';
 import Modal from '@/Components/Modal.vue';
 import PrimaryButton from '@/Components/PrimaryButton.vue';
 import SecondaryButton from '@/Components/SecondaryButton.vue';
@@ -72,8 +73,8 @@ const destroy = (faq) => {
                             <p class="mt-1 text-sm text-slate-500">{{ faq.answer }}</p>
                         </div>
                         <div class="flex shrink-0 gap-3 text-sm">
-                            <button class="text-brand-600 hover:underline" @click="openEdit(faq)">Edit</button>
-                            <button class="text-rose-600 hover:underline" @click="destroy(faq)">Delete</button>
+                            <button class="px-2 py-2 text-brand-600 hover:underline" @click="openEdit(faq)">Edit</button>
+                            <button class="px-2 py-2 text-rose-600 hover:underline" @click="destroy(faq)">Delete</button>
                         </div>
                     </div>
                 </div>
@@ -93,7 +94,7 @@ const destroy = (faq) => {
                     </div>
                     <div>
                         <InputLabel value="Answer *" />
-                        <textarea v-model="form.answer" rows="4" required class="mt-1 w-full rounded-md border-slate-300 text-sm" />
+                        <RichEditor v-model="form.answer" :height="220" />
                         <InputError :message="form.errors.answer" class="mt-1" />
                     </div>
                     <div class="grid grid-cols-2 gap-4">

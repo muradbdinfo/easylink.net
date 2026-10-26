@@ -35,7 +35,7 @@ npm run dev        # or: npm run build
 php artisan serve
 ```
 
-Seeded admin login: `admin@easylink.net` / `password` — **change this immediately in production.**
+Seeded admin login: `admin@elbd.net` / `password` — **change this immediately in production.**
 
 ## Deployment
 

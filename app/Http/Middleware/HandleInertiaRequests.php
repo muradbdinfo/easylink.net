@@ -3,6 +3,7 @@
 namespace App\Http\Middleware;
 
 use App\Models\Setting;
+use App\Support\SiteContent;
 use Illuminate\Http\Request;
 use Inertia\Middleware;
 
@@ -35,7 +36,8 @@ class HandleInertiaRequests extends Middleware
             'auth' => [
                 'user' => $request->user(),
             ],
-            'settings' => Setting::allSettings(),
+            'settings' => array_filter(Setting::allSettings(), fn ($key) => ! str_starts_with($key, SiteContent::PREFIX), ARRAY_FILTER_USE_KEY),
+            'content' => fn () => SiteContent::values(),
             'flash' => [
                 'success' => fn () => $request->session()->get('success'),
                 'error' => fn () => $request->session()->get('error'),

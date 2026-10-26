@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Models\BlogPost;
+use App\Support\Html;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Inertia\Inertia;
@@ -53,7 +54,7 @@ class BlogPostController extends Controller
 
     private function validated(Request $request): array
     {
-        return $request->validate([
+        $data = $request->validate([
             'title' => 'required|string|max:255',
             'excerpt' => 'nullable|string|max:255',
             'content' => 'required|string',
@@ -61,5 +62,9 @@ class BlogPostController extends Controller
             'author_name' => 'nullable|string|max:255',
             'is_published' => 'boolean',
         ]);
+
+        $data['content'] = Html::clean($data['content'] ?? null);
+
+        return $data;
     }
 }

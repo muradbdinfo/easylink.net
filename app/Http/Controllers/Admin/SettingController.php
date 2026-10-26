@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Models\Setting;
+use App\Support\Html;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
@@ -28,6 +29,8 @@ class SettingController extends Controller
             'phone' => 'nullable|string|max:50',
             'email' => 'nullable|email|max:255',
             'address' => 'nullable|string|max:500',
+            'map_url' => 'nullable|url|max:500',
+            'map_embed' => 'nullable|url|max:1000',
             'about_text' => 'nullable|string',
             'facebook_url' => 'nullable|string|max:255',
             'youtube_url' => 'nullable|string|max:255',
@@ -37,6 +40,8 @@ class SettingController extends Controller
             'logo' => 'nullable|image|mimes:jpg,jpeg,png,webp,svg|max:2048',
             'remove_logo' => 'nullable|boolean',
         ]);
+
+        $data['about_text'] = Html::clean($data['about_text'] ?? '');
 
         $logo = $data['logo'] ?? null;
         $removeLogo = $data['remove_logo'] ?? false;

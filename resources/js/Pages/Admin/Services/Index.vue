@@ -3,6 +3,7 @@ import AdminCard from '@/Components/Admin/AdminCard.vue';
 import Checkbox from '@/Components/Checkbox.vue';
 import InputError from '@/Components/InputError.vue';
 import InputLabel from '@/Components/InputLabel.vue';
+import RichEditor from '@/Components/Admin/RichEditor.vue';
 import Modal from '@/Components/Modal.vue';
 import PrimaryButton from '@/Components/PrimaryButton.vue';
 import SecondaryButton from '@/Components/SecondaryButton.vue';
@@ -104,9 +105,9 @@ const destroy = (service) => {
                                 {{ service.is_active ? 'Active' : 'Inactive' }}
                             </span>
                         </td>
-                        <td class="px-4 py-3 text-right">
-                            <button class="mr-3 text-brand-600 hover:underline" @click="openEdit(service)">Edit</button>
-                            <button class="text-rose-600 hover:underline" @click="destroy(service)">Delete</button>
+                        <td class="whitespace-nowrap px-4 py-3 text-right">
+                            <button class="mr-1 px-2 py-2 text-brand-600 hover:underline" @click="openEdit(service)">Edit</button>
+                            <button class="px-2 py-2 text-rose-600 hover:underline" @click="destroy(service)">Delete</button>
                         </td>
                     </tr>
                     <tr v-if="!services.length">
@@ -149,7 +150,7 @@ const destroy = (service) => {
                     </div>
                     <div>
                         <InputLabel value="Full description" />
-                        <textarea v-model="form.description" rows="4" class="mt-1 w-full rounded-md border-slate-300 text-sm" />
+                        <RichEditor v-model="form.description" :height="300" />
                     </div>
                     <div>
                         <InputLabel value="Image" />

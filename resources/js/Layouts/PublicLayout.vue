@@ -1,5 +1,6 @@
 <script setup>
 import FlashToast from '@/Components/FlashToast.vue';
+import BackToTop from '@/Components/Public/BackToTop.vue';
 import SiteFooter from '@/Components/Public/SiteFooter.vue';
 import SiteHeader from '@/Components/Public/SiteHeader.vue';
 </script>
@@ -12,5 +13,6 @@ import SiteHeader from '@/Components/Public/SiteHeader.vue';
         </main>
         <SiteFooter />
         <FlashToast />
+        <BackToTop />
     </div>
 </template>

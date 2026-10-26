@@ -15,9 +15,9 @@
  * Generate one with: php -r "echo bin2hex(random_bytes(32)), PHP_EOL;"
  */
 
-require __DIR__.'/../vendor/autoload.php';
+require __DIR__.'/../elbd.net/ftpuser/vendor/autoload.php';
 
-$app = require_once __DIR__.'/../bootstrap/app.php';
+$app = require_once __DIR__.'/../elbd.net/ftpuser/bootstrap/app.php';
 
 /** @var \Illuminate\Foundation\Application $app */
 $kernel = $app->make(Illuminate\Contracts\Console\Kernel::class);
@@ -25,7 +25,7 @@ $kernel->bootstrap();
 
 header('Content-Type: text/plain; charset=utf-8');
 
-$configuredToken = env('DEPLOY_HOOK_TOKEN');
+$configuredToken = config('app.deploy_hook_token');
 
 if (empty($configuredToken)) {
     http_response_code(503);
@@ -76,6 +76,7 @@ if (file_exists($zipPath)) {
 
 $commands = [
     ['migrate', ['--force' => true]],
+    ['storage:link', []],
     ['config:cache', []],
     ['route:cache', []],
     ['view:cache', []],
@@ -94,4 +95,50 @@ foreach ($commands as [$command, $params]) {
     }
 }
 
-echo "Deploy hook finished successfully.\n";
+// public_html (this file's own directory, __DIR__) is a separate, non-FTP
+// -jailed location from the app root (base_path()). The app's own public/
+// folder (build/, images/, logo/, favicon.ico, robots.txt) is the source of
+// truth after every deploy; mirror it into __DIR__ so the live site actually
+// serves the new assets, without needing a second manual upload each time.
+function syncDirRecursive(string $from, string $to): void
+{
+    if (! is_dir($from)) {
+        return;
+    }
+
+    if (! is_dir($to)) {
+        mkdir($to, 0755, true);
+    }
+
+    foreach (scandir($from) as $item) {
+        if ($item === '.' || $item === '..') {
+            continue;
+        }
+
+        $src = $from.'/'.$item;
+        $dst = $to.'/'.$item;
+
+        if (is_dir($src)) {
+            syncDirRecursive($src, $dst);
+        } else {
+            copy($src, $dst);
+        }
+    }
+}
+
+echo "Syncing public assets into web root...\n";
+
+foreach (['build', 'images', 'logo'] as $dir) {
+    syncDirRecursive(base_path('public/'.$dir), __DIR__.'/'.$dir);
+    echo "  synced {$dir}/\n";
+}
+
+foreach (['favicon.ico', 'robots.txt'] as $file) {
+    $src = base_path('public/'.$file);
+    if (file_exists($src)) {
+        copy($src, __DIR__.'/'.$file);
+        echo "  synced {$file}\n";
+    }
+}
+
+echo "\nDeploy hook finished successfully.\n";

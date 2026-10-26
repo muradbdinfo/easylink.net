@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Models\Service;
+use App\Support\Html;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Inertia\Inertia;
@@ -53,7 +54,7 @@ class ServiceController extends Controller
 
     private function validated(Request $request): array
     {
-        return $request->validate([
+        $data = $request->validate([
             'title' => 'required|string|max:255',
             'icon' => 'nullable|string|max:100',
             'short_description' => 'nullable|string|max:255',
@@ -63,5 +64,9 @@ class ServiceController extends Controller
             'order' => 'nullable|integer',
             'is_active' => 'boolean',
         ]);
+
+        $data['description'] = isset($data['description']) ? Html::clean($data['description']) : null;
+
+        return $data;
     }
 }

@@ -3,6 +3,7 @@ import AdminCard from '@/Components/Admin/AdminCard.vue';
 import Checkbox from '@/Components/Checkbox.vue';
 import InputError from '@/Components/InputError.vue';
 import InputLabel from '@/Components/InputLabel.vue';
+import RichEditor from '@/Components/Admin/RichEditor.vue';
 import Modal from '@/Components/Modal.vue';
 import PrimaryButton from '@/Components/PrimaryButton.vue';
 import SecondaryButton from '@/Components/SecondaryButton.vue';
@@ -96,9 +97,9 @@ const destroy = (post) => {
                                 {{ post.is_published ? 'Published' : 'Draft' }}
                             </span>
                         </td>
-                        <td class="px-4 py-3 text-right">
-                            <button class="mr-3 text-brand-600 hover:underline" @click="openEdit(post)">Edit</button>
-                            <button class="text-rose-600 hover:underline" @click="destroy(post)">Delete</button>
+                        <td class="whitespace-nowrap px-4 py-3 text-right">
+                            <button class="mr-1 px-2 py-2 text-brand-600 hover:underline" @click="openEdit(post)">Edit</button>
+                            <button class="px-2 py-2 text-rose-600 hover:underline" @click="destroy(post)">Delete</button>
                         </td>
                     </tr>
                     <tr v-if="!posts.length">
@@ -125,7 +126,7 @@ const destroy = (post) => {
                     </div>
                     <div>
                         <InputLabel value="Full content *" />
-                        <textarea v-model="form.content" rows="6" required class="mt-1 w-full rounded-md border-slate-300 text-sm" />
+                        <RichEditor v-model="form.content" :height="340" />
                         <InputError :message="form.errors.content" class="mt-1" />
                     </div>
                     <div>

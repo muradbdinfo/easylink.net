@@ -56,6 +56,19 @@ return [
 
     /*
     |--------------------------------------------------------------------------
+    | Deploy Hook Token
+    |--------------------------------------------------------------------------
+    |
+    | Used by public/deploy-hook.php to authorize deploy requests. Read via
+    | config() instead of env() directly, because env() stops reading .env
+    | once config:cache has run (which deploy-hook.php itself triggers).
+    |
+    */
+
+    'deploy_hook_token' => env('DEPLOY_HOOK_TOKEN'),
+
+    /*
+    |--------------------------------------------------------------------------
     | Application Timezone
     |--------------------------------------------------------------------------
     |

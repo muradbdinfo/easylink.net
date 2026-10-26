@@ -5,6 +5,7 @@ import InputError from '@/Components/InputError.vue';
 import InputLabel from '@/Components/InputLabel.vue';
 import PrimaryButton from '@/Components/PrimaryButton.vue';
 import TextInput from '@/Components/TextInput.vue';
+import { useContent } from '@/composables/useContent';
 import { Head, Link, useForm } from '@inertiajs/vue3';
 
 defineProps({
@@ -15,6 +16,8 @@ defineProps({
         type: String,
     },
 });
+
+const { c } = useContent();
 
 const form = useForm({
     email: '',
@@ -33,7 +36,7 @@ const submit = () => {
     <GuestLayout>
         <Head title="Admin Login" />
 
-        <h1 class="mb-6 text-center text-lg font-bold text-brand-900">EasyLink Admin Login</h1>
+        <h1 class="mb-6 text-center text-lg font-bold text-brand-900">{{ c('auth.login.title') }}</h1>
 
         <div v-if="status" class="mb-4 text-sm font-medium text-green-600">
             {{ status }}
@@ -90,7 +93,7 @@ const submit = () => {
                 </Link>
 
                 <PrimaryButton
-                    class="ms-4"
+                    class="ms-4 !py-3"
                     :class="{ 'opacity-25': form.processing }"
                     :disabled="form.processing"
                 >

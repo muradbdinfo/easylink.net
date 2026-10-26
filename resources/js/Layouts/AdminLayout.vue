@@ -30,6 +30,7 @@ const navGroups = [
     {
         label: 'Content Management',
         items: [
+            { label: 'Page content', icon: 'document-text', href: () => route('admin.content.edit'), match: 'admin.content.*' },
             { label: 'Sliders', icon: 'photo', href: () => route('admin.sliders.index'), match: 'admin.sliders.*' },
             { label: 'Packages', icon: 'cube', href: () => route('admin.packages.index'), match: 'admin.packages.*' },
             { label: 'Services', icon: 'wrench', href: () => route('admin.services.index'), match: 'admin.services.*' },
@@ -100,11 +101,11 @@ const navGroups = [
 
         <div v-if="sidebarOpen" class="fixed inset-0 z-30 bg-black/40 lg:hidden" @click="sidebarOpen = false" />
 
-        <div class="flex min-h-screen flex-1 flex-col">
+        <div class="flex min-h-screen min-w-0 flex-1 flex-col">
             <!-- Topbar -->
             <header class="sticky top-0 z-20 flex h-14 items-center justify-between border-b border-slate-200 bg-white px-4 shadow-sm sm:px-6">
                 <div class="flex items-center gap-4">
-                    <button class="text-slate-500 hover:text-slate-700" @click="sidebarOpen = true">
+                    <button class="-ml-1 p-1 text-slate-500 hover:text-slate-700 lg:hidden" aria-label="Open menu" @click="sidebarOpen = true">
                         <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
                         </svg>
@@ -113,7 +114,7 @@ const navGroups = [
                 </div>
 
                 <div class="relative">
-                    <button class="flex items-center gap-2 rounded-md px-2 py-1.5 hover:bg-slate-100" @click="userMenuOpen = !userMenuOpen">
+                    <button class="flex items-center gap-2 rounded-md px-2 py-1.5 hover:bg-slate-100" aria-label="User menu" @click="userMenuOpen = !userMenuOpen">
                         <span class="flex h-8 w-8 items-center justify-center rounded-full bg-brand-700 text-xs font-bold text-white">{{ initials }}</span>
                         <span class="hidden text-sm font-medium text-slate-700 sm:block">{{ user?.name }}</span>
                     </button>

@@ -47,8 +47,8 @@ const typeLabel = { general: 'General', quote: 'Quote', package: 'Packages' };
                         <p v-if="expanded === message.id" class="mt-2 whitespace-pre-line rounded-lg bg-slate-50 p-3 text-sm text-slate-600">{{ message.message }}</p>
                     </div>
                     <div class="flex shrink-0 gap-3 text-sm">
-                        <button v-if="!message.is_read" class="text-brand-600 hover:underline" @click="markRead(message)">Mark as read</button>
-                        <button class="text-rose-600 hover:underline" @click="destroy(message)">Delete</button>
+                        <button v-if="!message.is_read" class="px-2 py-2 text-brand-600 hover:underline" @click="markRead(message)">Mark as read</button>
+                        <button class="px-2 py-2 text-rose-600 hover:underline" @click="destroy(message)">Delete</button>
                     </div>
                 </div>
             </div>

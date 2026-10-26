@@ -21,6 +21,11 @@ class Setting extends Model
         Cache::forget('settings');
     }
 
+    public static function flush(): void
+    {
+        Cache::forget('settings');
+    }
+
     public static function allSettings(): array
     {
         $settings = Cache::rememberForever('settings', fn () => static::query()->pluck('value', 'key')->all());

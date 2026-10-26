@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Models\Faq;
+use App\Support\Html;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Inertia\Inertia;
@@ -41,11 +42,15 @@ class FaqController extends Controller
 
     private function validated(Request $request): array
     {
-        return $request->validate([
+        $data = $request->validate([
             'question' => 'required|string|max:255',
             'answer' => 'required|string',
             'order' => 'nullable|integer',
             'is_active' => 'boolean',
         ]);
+
+        $data['answer'] = Html::clean($data['answer'] ?? null);
+
+        return $data;
     }
 }

@@ -3,8 +3,8 @@
     "private": true,
     "type": "module",
     "scripts": {
-        "build": "vite build",
-        "dev": "vite"
+        "build": "node scripts/copy-tinymce.mjs && vite build",
+        "dev": "node scripts/copy-tinymce.mjs && vite"
     },
     "devDependencies": {
         "@inertiajs/vue3": "^2.0.0",
@@ -19,6 +19,8 @@
         "vue": "^3.4.0"
     },
     "dependencies": {
-        "@heroicons/vue": "^2.2.0"
+        "@heroicons/vue": "^2.2.0",
+        "@tinymce/tinymce-vue": "^6.3.0",
+        "tinymce": "^8.10.0"
     }
 }

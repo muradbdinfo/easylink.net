@@ -19,6 +19,7 @@ const props = defineProps({
 const emit = defineEmits(['close']);
 const dialog = ref();
 const showSlot = ref(props.show);
+const openedAt = ref(0);
 
 watch(
     () => props.show,
@@ -26,13 +27,18 @@ watch(
         if (props.show) {
             document.body.style.overflow = 'hidden';
             showSlot.value = true;
+            openedAt.value = Date.now();
 
-            dialog.value?.showModal();
+            if (dialog.value && !dialog.value.open) {
+                dialog.value.showModal();
+            }
         } else {
             document.body.style.overflow = '';
 
             setTimeout(() => {
-                dialog.value?.close();
+                if (dialog.value?.open) {
+                    dialog.value.close();
+                }
                 showSlot.value = false;
             }, 200);
         }
@@ -43,6 +49,17 @@ const close = () => {
     if (props.closeable) {
         emit('close');
     }
+};
+
+const closeOnBackdropClick = () => {
+    // Ignore backdrop clicks landing right after the open-click (e.g. a
+    // double-click on the trigger button), which would otherwise land on
+    // this backdrop and close the dialog the instant it appears.
+    if (Date.now() - openedAt.value < 300) {
+        return;
+    }
+
+    close();
 };
 
 const closeOnEscape = (e) => {
@@ -94,7 +111,7 @@ const maxWidthClass = computed(() => {
                 <div
                     v-show="show"
                     class="fixed inset-0 transform transition-all"
-                    @click="close"
+                    @click="closeOnBackdropClick"
                 >
                     <div
                         class="absolute inset-0 bg-gray-500 opacity-75 dark:bg-gray-900"
@@ -112,7 +129,7 @@ const maxWidthClass = computed(() => {
             >
                 <div
                     v-show="show"
-                    class="mb-6 transform overflow-hidden rounded-lg bg-white shadow-xl transition-all sm:mx-auto sm:w-full dark:bg-gray-800"
+                    class="relative z-10 mb-6 transform overflow-hidden rounded-lg bg-white shadow-xl transition-all sm:mx-auto sm:w-full dark:bg-gray-800"
                     :class="maxWidthClass"
                 >
                     <slot v-if="showSlot" />

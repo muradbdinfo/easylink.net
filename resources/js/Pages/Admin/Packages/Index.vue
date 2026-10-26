@@ -59,14 +59,14 @@ const addFeature = () => form.features.push('');
 const removeFeature = (i) => form.features.splice(i, 1);
 
 const submit = () => {
-    const url = editing.value ? route('admin.packages.update', editing.value.id) : route('admin.packages.store');
+    const url = editing.value ? route('admin.packages.update', editing.value.slug) : route('admin.packages.store');
     const method = editing.value ? 'put' : 'post';
     form[method](url, { onSuccess: () => (showModal.value = false) });
 };
 
 const destroy = (pkg) => {
     if (confirm(`"${pkg.name}" Delete this item?`)) {
-        router.delete(route('admin.packages.destroy', pkg.id), { preserveScroll: true });
+        router.delete(route('admin.packages.destroy', pkg.slug), { preserveScroll: true });
     }
 };
 </script>
@@ -95,16 +95,16 @@ const destroy = (pkg) => {
                     <tr v-for="pkg in packages" :key="pkg.id">
                         <td class="px-4 py-3 font-medium text-slate-700">{{ pkg.name }} <span v-if="pkg.is_popular" class="ml-1 rounded-full bg-accent-100 px-2 py-0.5 text-xs text-accent-700">Popular</span></td>
                         <td class="px-4 py-3 capitalize text-slate-500">{{ pkg.type }}</td>
-                        <td class="px-4 py-3 text-slate-500">{{ pkg.speed_mbps }} Mbps</td>
+                        <td class="whitespace-nowrap px-4 py-3 text-slate-500">{{ pkg.speed_mbps }} Mbps</td>
                         <td class="px-4 py-3 text-slate-500">৳{{ pkg.price }}</td>
                         <td class="px-4 py-3">
                             <span class="rounded-full px-2 py-1 text-xs font-semibold" :class="pkg.is_active ? 'bg-emerald-100 text-emerald-700' : 'bg-slate-100 text-slate-500'">
                                 {{ pkg.is_active ? 'Active' : 'Inactive' }}
                             </span>
                         </td>
-                        <td class="px-4 py-3 text-right">
-                            <button class="mr-3 text-brand-600 hover:underline" @click="openEdit(pkg)">Edit</button>
-                            <button class="text-rose-600 hover:underline" @click="destroy(pkg)">Delete</button>
+                        <td class="whitespace-nowrap px-4 py-3 text-right">
+                            <button class="mr-1 px-2 py-2 text-brand-600 hover:underline" @click="openEdit(pkg)">Edit</button>
+                            <button class="px-2 py-2 text-rose-600 hover:underline" @click="destroy(pkg)">Delete</button>
                         </td>
                     </tr>
                     <tr v-if="!packages.length">

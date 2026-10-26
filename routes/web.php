@@ -12,6 +12,8 @@ use App\Http\Controllers\Admin\ServiceController as AdminServiceController;
 use App\Http\Controllers\Admin\SettingController as AdminSettingController;
 use App\Http\Controllers\Admin\SliderController as AdminSliderController;
 use App\Http\Controllers\Admin\StatController as AdminStatController;
+use App\Http\Controllers\Admin\ContentController as AdminContentController;
+use App\Http\Controllers\Admin\UploadController as AdminUploadController;
 use App\Http\Controllers\Admin\TestimonialController as AdminTestimonialController;
 use App\Http\Controllers\BlogController;
 use App\Http\Controllers\ContactController;
@@ -67,6 +69,12 @@ Route::middleware(['auth', 'admin'])->prefix('admin')->name('admin.')->group(fun
     Route::get('contact-messages', [AdminContactMessageController::class, 'index'])->name('contact-messages.index');
     Route::patch('contact-messages/{contactMessage}', [AdminContactMessageController::class, 'update'])->name('contact-messages.update');
     Route::delete('contact-messages/{contactMessage}', [AdminContactMessageController::class, 'destroy'])->name('contact-messages.destroy');
+
+    Route::post('uploads/image', [AdminUploadController::class, 'image'])->name('uploads.image');
+
+    Route::get('content', [AdminContentController::class, 'edit'])->name('content.edit');
+    Route::put('content', [AdminContentController::class, 'update'])->name('content.update');
+    Route::delete('content', [AdminContentController::class, 'reset'])->name('content.reset');
 
     Route::get('settings', [AdminSettingController::class, 'edit'])->name('settings.edit');
     Route::put('settings', [AdminSettingController::class, 'update'])->name('settings.update');

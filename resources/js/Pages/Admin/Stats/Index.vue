@@ -78,8 +78,8 @@ const destroy = (stat) => {
                     <p class="mt-2 text-2xl font-bold text-brand-900">{{ stat.value }}{{ stat.suffix }}</p>
                     <p class="text-sm text-slate-500">{{ stat.label }}</p>
                     <div class="mt-3 flex justify-center gap-3 text-sm">
-                        <button class="text-brand-600 hover:underline" @click="openEdit(stat)">Edit</button>
-                        <button class="text-rose-600 hover:underline" @click="destroy(stat)">Delete</button>
+                        <button class="px-2 py-2 text-brand-600 hover:underline" @click="openEdit(stat)">Edit</button>
+                        <button class="px-2 py-2 text-rose-600 hover:underline" @click="destroy(stat)">Delete</button>
                     </div>
                 </div>
                 <p v-if="!stats.length" class="col-span-full p-8 text-center text-slate-400">No stats yet.</p>

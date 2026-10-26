@@ -1,5 +1,6 @@
 <script setup>
 import AdminCard from '@/Components/Admin/AdminCard.vue';
+import RichEditor from '@/Components/Admin/RichEditor.vue';
 import InputError from '@/Components/InputError.vue';
 import InputLabel from '@/Components/InputLabel.vue';
 import PrimaryButton from '@/Components/PrimaryButton.vue';
@@ -19,6 +20,8 @@ const form = useForm({
     phone: props.settings.phone || '',
     email: props.settings.email || '',
     address: props.settings.address || '',
+    map_url: props.settings.map_url || '',
+    map_embed: props.settings.map_embed || '',
     about_text: props.settings.about_text || '',
     facebook_url: props.settings.facebook_url || '',
     youtube_url: props.settings.youtube_url || '',
@@ -101,11 +104,11 @@ const submit = () =>
                     <TextInput v-model="form.tagline" class="mt-1 w-full" />
                 </div>
                 <div>
-                    <InputLabel value="Hotline" />
+                    <InputLabel value="Support number 1" />
                     <TextInput v-model="form.hotline" class="mt-1 w-full" />
                 </div>
                 <div>
-                    <InputLabel value="Phone" />
+                    <InputLabel value="Support number 2" />
                     <TextInput v-model="form.phone" class="mt-1 w-full" />
                 </div>
                 <div>
@@ -116,11 +119,21 @@ const submit = () =>
                     <InputLabel value="Address" />
                     <TextInput v-model="form.address" class="mt-1 w-full" />
                 </div>
+                <div class="sm:col-span-2">
+                    <InputLabel value="Google Maps link (directions button)" />
+                    <TextInput v-model="form.map_url" class="mt-1 w-full" />
+                    <InputError :message="form.errors.map_url" class="mt-1" />
+                </div>
+                <div class="sm:col-span-2">
+                    <InputLabel value="Google Maps embed URL (map on Contact page)" />
+                    <TextInput v-model="form.map_embed" class="mt-1 w-full" />
+                    <InputError :message="form.errors.map_embed" class="mt-1" />
+                </div>
             </div>
 
             <div>
                 <InputLabel value="About text" />
-                <textarea v-model="form.about_text" rows="5" class="mt-1 w-full rounded-md border-slate-300 text-sm" />
+                <RichEditor v-model="form.about_text" :height="260" />
             </div>
 
             <div class="grid grid-cols-1 gap-4 sm:grid-cols-2">

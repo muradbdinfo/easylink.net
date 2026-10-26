@@ -98,9 +98,9 @@ const destroy = (slider) => {
                                 {{ slider.is_active ? 'Active' : 'Inactive' }}
                             </span>
                         </td>
-                        <td class="px-4 py-3 text-right">
-                            <button class="mr-3 text-brand-600 hover:underline" @click="openEdit(slider)">Edit</button>
-                            <button class="text-rose-600 hover:underline" @click="destroy(slider)">Delete</button>
+                        <td class="whitespace-nowrap px-4 py-3 text-right">
+                            <button class="mr-1 px-2 py-2 text-brand-600 hover:underline" @click="openEdit(slider)">Edit</button>
+                            <button class="px-2 py-2 text-rose-600 hover:underline" @click="destroy(slider)">Delete</button>
                         </td>
                     </tr>
                     <tr v-if="!sliders.length">

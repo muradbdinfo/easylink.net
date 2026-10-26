@@ -20,7 +20,7 @@ class DatabaseSeeder extends Seeder
     public function run(): void
     {
         User::updateOrCreate(
-            ['email' => 'admin@easylink.net'],
+            ['email' => 'admin@elbd.net'],
             [
                 'name' => 'EasyLink Admin',
                 'password' => bcrypt('password'),
@@ -46,16 +46,18 @@ class DatabaseSeeder extends Seeder
         $settings = [
             'site_name' => 'EasyLink',
             'tagline' => 'Your reliable internet partner',
-            'hotline' => '16999',
-            'phone' => '09611-999888',
-            'email' => 'support@easylink.net',
-            'address' => 'Level-6, Rupayan Trade Center, 114 Kazi Nazrul Islam Avenue, Bijoy Nagar, Dhaka-1000',
+            'hotline' => '01812432256',
+            'phone' => '01772432258',
+            'email' => 'support@elbd.net',
+            'address' => '17/4 College Road, Percival Hill, Chawkbazar, Chattogram-4203',
+            'map_url' => 'https://maps.app.goo.gl/zebS1DMWdbscBFhn7?g_st=aw',
+            'map_embed' => 'https://maps.google.com/maps?q=22.3545813,91.8367228&z=17&output=embed',
             'about_text' => "EasyLink has been delivering dependable fiber-optic internet and corporate connectivity across Bangladesh since 2010. With our own nationwide backbone, a 24/7 Network Operations Center and a skilled technical team, we serve home and corporate customers in all 64 districts.\n\nOur promise is simple: fast, stable internet that just works, backed by people who pick up the phone.",
             'facebook_url' => 'https://facebook.com/easylinkbd',
             'youtube_url' => 'https://youtube.com/@easylinkbd',
             'linkedin_url' => 'https://linkedin.com/company/easylinkbd',
             'instagram_url' => 'https://instagram.com/easylinkbd',
-            'footer_text' => 'EasyLink Ltd. — BTRC Approved Nationwide ISP',
+            'footer_text' => 'Easy Link — BTRC Approved Zonal ISP',
         ];
 
         foreach ($settings as $key => $value) {
@@ -144,16 +146,16 @@ class DatabaseSeeder extends Seeder
     private function seedPartners(): void
     {
         $partners = [
-            ['name' => 'Cisco', 'type' => 'partner', 'order' => 1],
-            ['name' => 'Huawei', 'type' => 'partner', 'order' => 2],
-            ['name' => 'Fortinet', 'type' => 'partner', 'order' => 3],
-            ['name' => 'Juniper Networks', 'type' => 'partner', 'order' => 4],
-            ['name' => 'Microsoft', 'type' => 'partner', 'order' => 5],
-            ['name' => 'Bright Textiles Ltd.', 'type' => 'client', 'order' => 1],
-            ['name' => 'Union Bank PLC', 'type' => 'client', 'order' => 2],
-            ['name' => 'Padma Group', 'type' => 'client', 'order' => 3],
-            ['name' => 'Green Life Hospital', 'type' => 'client', 'order' => 4],
-            ['name' => 'Nova Garments', 'type' => 'client', 'order' => 5],
+            ['name' => 'Cisco', 'logo' => '/images/partners/cisco.svg', 'type' => 'partner', 'order' => 1],
+            ['name' => 'Huawei', 'logo' => '/images/partners/huawei.svg', 'type' => 'partner', 'order' => 2],
+            ['name' => 'Fortinet', 'logo' => '/images/partners/fortinet.svg', 'type' => 'partner', 'order' => 3],
+            ['name' => 'Juniper Networks', 'logo' => '/images/partners/juniper.svg', 'type' => 'partner', 'order' => 4],
+            ['name' => 'Microsoft', 'logo' => '/images/partners/microsoft.svg', 'type' => 'partner', 'order' => 5],
+            ['name' => 'Bright Textiles Ltd.', 'logo' => '/images/partners/bright-textiles.svg', 'type' => 'client', 'order' => 1],
+            ['name' => 'Union Bank PLC', 'logo' => '/images/partners/union-bank.svg', 'type' => 'client', 'order' => 2],
+            ['name' => 'Padma Group', 'logo' => '/images/partners/padma-group.svg', 'type' => 'client', 'order' => 3],
+            ['name' => 'Green Life Hospital', 'logo' => '/images/partners/green-life-hospital.svg', 'type' => 'client', 'order' => 4],
+            ['name' => 'Nova Garments', 'logo' => '/images/partners/nova-garments.svg', 'type' => 'client', 'order' => 5],
         ];
 
         foreach ($partners as $p) {
