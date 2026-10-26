@@ -7,8 +7,9 @@
         @php
             $siteName = $page['props']['settings']['site_name'] ?? config('app.name');
             $tagline = $page['props']['settings']['tagline'] ?? null;
+            // about_text is HTML from the rich text editor; meta tags need plain text.
             $ogDescription = \Illuminate\Support\Str::limit(
-                $page['props']['settings']['about_text'] ?? $tagline ?? '',
+                trim(preg_replace('/\s+/', ' ', html_entity_decode(strip_tags($page['props']['settings']['about_text'] ?? $tagline ?? '')))),
                 200
             );
             $ogTitle = $tagline ? "{$siteName} — {$tagline}" : $siteName;
