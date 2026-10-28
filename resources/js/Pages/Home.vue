@@ -3,6 +3,7 @@ import Icon from '@/Components/Icon.vue';
 import PackageCard from '@/Components/Public/PackageCard.vue';
 import PublicLayout from '@/Layouts/PublicLayout.vue';
 import { useContent } from '@/composables/useContent';
+import { tone } from '@/composables/useTones';
 import { Head, Link } from '@inertiajs/vue3';
 import { computed, onMounted, onUnmounted, ref } from 'vue';
 
@@ -76,11 +77,12 @@ const formatDate = (d) => new Date(d).toLocaleDateString('en-GB', { day: 'numeri
                 :style="slideBg(s, i)"
             />
             <!-- readability overlay -->
-            <div class="absolute inset-0 bg-gradient-to-r from-brand-900/95 via-brand-900/70 to-brand-900/20" />
+            <div class="absolute inset-0 bg-gradient-to-r from-brand-900/95 via-[#1e1b6b]/75 to-violet-900/25" />
             <div class="absolute inset-0 bg-gradient-to-t from-brand-900/50 via-transparent to-brand-900/20" />
             <div class="grid-bg absolute inset-0 opacity-40 [mask-image:radial-gradient(ellipse_at_top_right,black,transparent_70%)]" />
             <div class="pointer-events-none absolute -right-24 -top-24 h-[28rem] w-[28rem] rounded-full bg-accent-500/30 blur-3xl" />
-            <div class="pointer-events-none absolute -bottom-32 left-0 h-[26rem] w-[26rem] rounded-full bg-brand-500/25 blur-3xl" />
+            <div class="pointer-events-none absolute -bottom-32 left-0 h-[26rem] w-[26rem] rounded-full bg-violet-500/30 blur-3xl" />
+            <div class="pointer-events-none absolute right-1/3 top-1/3 h-72 w-72 rounded-full bg-rose-500/20 blur-3xl" />
 
             <div class="container-x relative grid min-h-[540px] items-center gap-12 py-20 [@media(max-height:500px)]:min-h-0 [@media(max-height:500px)]:py-10 text-white lg:grid-cols-5 lg:py-28">
                 <div class="lg:col-span-3">
@@ -93,11 +95,11 @@ const formatDate = (d) => new Date(d).toLocaleDateString('en-GB', { day: 'numeri
                     >
                         <div :key="active">
                             <span class="eyebrow-dark">
-                                <span class="h-1.5 w-1.5 rounded-full bg-brand-400" />
+                                <span class="h-1.5 w-1.5 rounded-full bg-amber-300" />
                                 {{ c('home.hero.badge') }}
                             </span>
                             <h1 class="mt-6 text-4xl font-extrabold leading-[1.1] tracking-tight sm:text-5xl lg:text-6xl">{{ currentSlide?.title }}</h1>
-                            <p class="mt-5 max-w-xl text-lg text-slate-300">{{ currentSlide?.subtitle }}</p>
+                            <p class="mt-5 max-w-xl text-lg text-slate-200">{{ currentSlide?.subtitle }}</p>
                             <div class="mt-9 flex flex-wrap gap-3">
                                 <Link v-if="currentSlide?.button_link" :href="currentSlide.button_link" class="btn-primary">
                                     {{ currentSlide.button_text }}
@@ -115,7 +117,7 @@ const formatDate = (d) => new Date(d).toLocaleDateString('en-GB', { day: 'numeri
                             class="group flex h-6 items-center px-1.5"
                             @click="active = i"
                         >
-                            <span class="h-1.5 rounded-full transition-all" :class="i === active ? 'w-10 bg-brand-400' : 'w-4 bg-white/25 group-hover:bg-white/40'" />
+                            <span class="h-1.5 rounded-full transition-all" :class="i === active ? 'w-10 bg-gradient-to-r from-sky-300 to-violet-400' : 'w-4 bg-white/25 group-hover:bg-white/40'" />
                         </button>
                     </div>
                 </div>
@@ -123,23 +125,23 @@ const formatDate = (d) => new Date(d).toLocaleDateString('en-GB', { day: 'numeri
                 <!-- Speed visual -->
                 <div class="hidden lg:col-span-2 lg:block">
                     <div class="relative mx-auto max-w-sm">
-                        <div class="rounded-3xl border border-white/10 bg-white/5 p-7 shadow-2xl backdrop-blur">
+                        <div class="rounded-3xl border border-white/20 bg-gradient-to-br from-white/15 to-violet-300/10 p-7 shadow-2xl shadow-violet-900/30 backdrop-blur-md">
                             <div class="flex items-center justify-between text-xs font-semibold uppercase tracking-wider text-slate-400">
                                 <span>{{ c('home.speed.title') }}</span>
                                 <span class="flex items-center gap-1.5 text-brand-300"><span class="h-2 w-2 animate-pulse rounded-full bg-brand-400" /> {{ c('home.speed.status') }}</span>
                             </div>
-                            <p class="mt-6 font-display text-7xl font-extrabold tracking-tight">
-                                {{ c('home.speed.value') }}<span class="ml-1 text-2xl font-semibold text-slate-400">{{ c('home.speed.unit') }}</span>
+                            <p class="text-gradient-light mt-6 font-display text-7xl font-extrabold tracking-tight">
+                                {{ c('home.speed.value') }}<span class="ml-1 text-2xl font-semibold text-sky-200/80">{{ c('home.speed.unit') }}</span>
                             </p>
                             <div class="mt-6 space-y-3">
                                 <div v-for="row in speedRows" :key="row.label">
                                     <div class="mb-1 flex justify-between text-xs text-slate-400"><span>{{ row.label }}</span><span>{{ row.value }}</span></div>
-                                    <div class="h-2 rounded-full bg-white/10"><div class="h-2 rounded-full bg-gradient-to-r from-brand-400 to-accent-400" :style="{ width: `${Math.min(100, Math.max(0, Number(row.percent) || 0))}%` }" /></div>
+                                    <div class="h-2 rounded-full bg-white/10"><div class="h-2 rounded-full bg-gradient-to-r from-sky-400 via-violet-400 to-rose-400" :style="{ width: `${Math.min(100, Math.max(0, Number(row.percent) || 0))}%` }" /></div>
                                 </div>
                             </div>
                         </div>
                         <div class="absolute -bottom-12 -left-8 flex items-center gap-3 rounded-2xl bg-white px-4 py-3 text-brand-900 shadow-xl">
-                            <span class="flex h-9 w-9 items-center justify-center rounded-xl bg-brand-100 text-brand-700"><Icon name="check" class="h-5 w-5" /></span>
+                            <span class="flex h-9 w-9 items-center justify-center rounded-xl bg-gradient-to-br from-emerald-400 to-teal-500 text-white shadow-md"><Icon name="check" class="h-5 w-5" /></span>
                             <span class="text-sm font-semibold leading-tight">{{ c('home.speed.badge_title') }}<br /><span class="text-xs font-normal text-slate-500">{{ c('home.speed.badge_text') }}</span></span>
                         </div>
                     </div>
@@ -150,12 +152,13 @@ const formatDate = (d) => new Date(d).toLocaleDateString('en-GB', { day: 'numeri
         <!-- Stats -->
         <section class="relative z-10 -mt-10">
             <div class="container-x">
-                <div class="card grid grid-cols-2 gap-6 p-8 shadow-xl shadow-slate-900/5 sm:grid-cols-4">
-                    <div v-for="stat in stats" :key="stat.id" class="flex flex-col items-center text-center">
-                        <span class="flex h-11 w-11 items-center justify-center rounded-2xl bg-brand-50 text-brand-600">
+                <div class="card relative grid grid-cols-2 gap-6 overflow-hidden border-white bg-white/90 p-8 shadow-2xl shadow-violet-900/10 backdrop-blur sm:grid-cols-4">
+                    <span class="rainbow-bar absolute inset-x-0 top-0" />
+                    <div v-for="(stat, i) in stats" :key="stat.id" class="group flex flex-col items-center rounded-2xl bg-gradient-to-b px-2 py-4 text-center" :class="tone(i).wash">
+                        <span class="flex h-12 w-12 items-center justify-center rounded-2xl shadow-lg transition duration-300 group-hover:-translate-y-1 group-hover:rotate-6" :class="tone(i).tile">
                             <Icon :name="stat.icon" class="h-6 w-6" />
                         </span>
-                        <span class="mt-3 font-display text-3xl font-extrabold text-brand-900">{{ stat.value }}{{ stat.suffix }}</span>
+                        <span class="text-gradient mt-3 font-display text-3xl font-extrabold">{{ stat.value }}{{ stat.suffix }}</span>
                         <span class="text-sm text-slate-500">{{ stat.label }}</span>
                     </div>
                 </div>
@@ -163,12 +166,13 @@ const formatDate = (d) => new Date(d).toLocaleDateString('en-GB', { day: 'numeri
         </section>
 
         <!-- Home packages -->
-        <section class="relative overflow-hidden bg-white py-24">
+        <section class="relative overflow-hidden bg-gradient-to-b from-white via-sky-50 to-fuchsia-50/60 py-24">
             <!-- router picture, fading into white behind the cards -->
             <div class="absolute inset-0 bg-cover bg-right opacity-40" :style="{ backgroundImage: `url('${c('home.plans.image')}')` }" />
-            <div class="absolute inset-0 bg-gradient-to-r from-white via-white/90 to-white/50" />
+            <div class="absolute inset-0 bg-gradient-to-r from-white/90 via-white/70 to-white/30" />
             <div class="absolute inset-0 bg-gradient-to-b from-white via-transparent to-white" />
             <div class="pointer-events-none absolute -right-24 top-10 h-96 w-96 rounded-full bg-accent-300/30 blur-3xl" />
+            <div class="pointer-events-none absolute -left-24 bottom-10 h-96 w-96 rounded-full bg-violet-300/25 blur-3xl" />
 
             <div class="container-x relative">
                 <div class="mx-auto max-w-2xl text-center">
@@ -205,26 +209,29 @@ const formatDate = (d) => new Date(d).toLocaleDateString('en-GB', { day: 'numeri
                 </div>
                 <div class="mt-14 grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
                     <Link
-                        v-for="service in services"
+                        v-for="(service, i) in services"
                         :key="service.id"
                         :href="route('services.show', service.slug)"
-                        class="card group relative overflow-hidden border-white bg-white/70 p-7 backdrop-blur-md transition duration-300 hover:-translate-y-1.5 hover:border-violet-300 hover:bg-white hover:shadow-2xl hover:shadow-violet-500/10"
+                        class="card group relative overflow-hidden border-white bg-white/70 p-7 backdrop-blur-md transition duration-300 hover:-translate-y-1.5 hover:bg-white hover:shadow-2xl"
+                        :class="tone(i).hover"
                     >
-                        <span class="absolute inset-x-0 top-0 h-1 bg-gradient-to-r from-violet-400 to-rose-400 opacity-0 transition group-hover:opacity-100" />
-                        <span class="pointer-events-none absolute -right-8 -top-8 h-28 w-28 rounded-full bg-gradient-to-br from-violet-100 to-rose-100 opacity-60 transition duration-500 group-hover:scale-150" />
-                        <span class="relative flex h-14 w-14 items-center justify-center rounded-2xl bg-gradient-to-br from-violet-50 to-rose-100 text-violet-600 shadow-sm transition duration-300 group-hover:rotate-3 group-hover:from-violet-500 group-hover:to-rose-400 group-hover:text-white">
+                        <span class="absolute inset-x-0 top-0 h-1.5 bg-gradient-to-r" :class="tone(i).top" />
+                        <span class="pointer-events-none absolute -right-8 -top-8 h-28 w-28 rounded-full opacity-70 transition duration-500 group-hover:scale-150" :class="tone(i).glow" />
+                        <span class="relative flex h-14 w-14 items-center justify-center rounded-2xl shadow-lg transition duration-300 group-hover:rotate-6 group-hover:scale-110" :class="tone(i).tile">
                             <Icon :name="service.icon" class="h-7 w-7" />
                         </span>
                         <h3 class="relative mt-5 text-lg font-bold text-brand-900">{{ service.title }}</h3>
                         <p class="relative mt-2 text-sm leading-relaxed text-slate-500">{{ service.short_description }}</p>
-                        <span class="relative mt-4 inline-block text-sm font-semibold text-violet-600">{{ c('home.services.link_label') }} <span class="inline-block transition group-hover:translate-x-1">→</span></span>
+                        <span class="relative mt-4 inline-block text-sm font-semibold" :class="tone(i).text">{{ c('home.services.link_label') }} <span class="inline-block transition group-hover:translate-x-1">→</span></span>
                     </Link>
                 </div>
             </div>
         </section>
 
         <!-- Why choose us -->
-        <section class="relative overflow-hidden bg-brand-900 py-24 text-white">
+        <section class="relative overflow-hidden bg-gradient-to-br from-brand-900 via-[#1e1b6b] to-violet-900 py-24 text-white">
+            <div class="pointer-events-none absolute -right-24 top-0 h-96 w-96 rounded-full bg-rose-500/20 blur-3xl" />
+            <div class="pointer-events-none absolute -left-24 bottom-0 h-96 w-96 rounded-full bg-accent-500/25 blur-3xl" />
             <div class="grid-bg absolute inset-0 opacity-40 [mask-image:radial-gradient(ellipse_at_left,black,transparent_70%)]" />
             <div class="container-x relative grid grid-cols-1 items-center gap-14 lg:grid-cols-2">
                 <div>
@@ -233,7 +240,7 @@ const formatDate = (d) => new Date(d).toLocaleDateString('en-GB', { day: 'numeri
                     <p class="mt-4 text-lg text-slate-300">{{ c('home.why.subtitle') }}</p>
                     <div class="mt-10 grid grid-cols-1 gap-7 sm:grid-cols-2">
                         <div v-for="(item, i) in reasons" :key="`${i}-${item.title}`" class="flex items-start gap-4">
-                            <span class="flex h-11 w-11 shrink-0 items-center justify-center rounded-2xl bg-white/10 text-brand-300">
+                            <span class="flex h-11 w-11 shrink-0 items-center justify-center rounded-2xl ring-1" :class="tone(i).dark">
                                 <Icon :name="item.icon" class="h-6 w-6" />
                             </span>
                             <div>
@@ -243,7 +250,7 @@ const formatDate = (d) => new Date(d).toLocaleDateString('en-GB', { day: 'numeri
                         </div>
                     </div>
                 </div>
-                <div class="overflow-hidden rounded-3xl border border-white/10 bg-white/5 backdrop-blur">
+                <div class="overflow-hidden rounded-3xl border border-white/15 bg-white/10 shadow-2xl shadow-black/20 backdrop-blur">
                     <img :src="c('home.quote.image')" :alt="c('home.quote.image_alt')" loading="lazy" class="h-56 w-full object-cover" />
                     <div class="p-9">
                     <h3 class="text-2xl font-bold">{{ c('home.quote.title') }}</h3>
@@ -258,9 +265,9 @@ const formatDate = (d) => new Date(d).toLocaleDateString('en-GB', { day: 'numeri
         </section>
 
         <!-- Entertainment -->
-        <section id="entertainment" class="relative scroll-mt-28 overflow-hidden bg-gradient-to-b from-slate-50 to-white py-24">
+        <section id="entertainment" class="relative scroll-mt-28 overflow-hidden bg-gradient-to-b from-sky-50 via-fuchsia-50/40 to-white py-24">
             <div class="pointer-events-none absolute -left-32 top-10 h-80 w-80 rounded-full bg-accent-300/30 blur-3xl" />
-            <div class="pointer-events-none absolute -right-32 bottom-10 h-80 w-80 rounded-full bg-brand-300/30 blur-3xl" />
+            <div class="pointer-events-none absolute -right-32 bottom-10 h-80 w-80 rounded-full bg-fuchsia-300/30 blur-3xl" />
 
             <div class="container-x relative">
                 <div class="mx-auto max-w-2xl text-center">
@@ -274,7 +281,7 @@ const formatDate = (d) => new Date(d).toLocaleDateString('en-GB', { day: 'numeri
                     :href="app.href"
                     target="_blank"
                     rel="noopener noreferrer"
-                    class="group relative mt-14 flex flex-col items-start gap-6 overflow-hidden rounded-3xl bg-gradient-to-r from-brand-900 via-brand-800 to-accent-600 p-8 text-white shadow-xl transition hover:shadow-2xl sm:flex-row sm:items-center sm:p-10"
+                    class="group relative mt-14 flex flex-col items-start gap-6 overflow-hidden rounded-3xl bg-gradient-to-r from-brand-900 via-violet-700 to-fuchsia-600 p-8 text-white shadow-xl transition hover:shadow-2xl sm:flex-row sm:items-center sm:p-10"
                 >
                     <div class="grid-bg absolute inset-0 opacity-40 [mask-image:radial-gradient(ellipse_at_right,black,transparent_70%)]" />
                     <span class="relative flex h-16 w-16 shrink-0 items-center justify-center rounded-2xl bg-white/15 ring-1 ring-white/20 backdrop-blur">
@@ -284,7 +291,7 @@ const formatDate = (d) => new Date(d).toLocaleDateString('en-GB', { day: 'numeri
                         <h3 class="text-2xl font-extrabold sm:text-3xl">{{ app.title }}</h3>
                         <p class="mt-1 text-brand-200">{{ app.desc }}</p>
                     </div>
-                    <span class="btn-primary relative !bg-white !text-brand-900 !shadow-none group-hover:!bg-brand-50">{{ app.button }}</span>
+                    <span class="btn-primary relative !bg-white !bg-none !text-brand-900 !shadow-none group-hover:!bg-violet-50">{{ app.button }}</span>
                 </a>
 
                 <div class="mt-8 grid grid-cols-1 gap-6 sm:grid-cols-2 md:grid-cols-3">
@@ -344,18 +351,19 @@ const formatDate = (d) => new Date(d).toLocaleDateString('en-GB', { day: 'numeri
                 </div>
                 <div class="mt-14 grid grid-cols-1 gap-6 sm:grid-cols-2 xl:grid-cols-4">
                     <div
-                        v-for="t in testimonials"
+                        v-for="(t, ti) in testimonials"
                         :key="t.id"
-                        class="card group relative flex flex-col overflow-hidden border-white bg-white/70 p-7 backdrop-blur-md transition duration-300 hover:-translate-y-1.5 hover:border-violet-300 hover:bg-white hover:shadow-2xl hover:shadow-violet-500/10"
+                        class="card group relative flex flex-col overflow-hidden border-white bg-white/70 p-7 backdrop-blur-md transition duration-300 hover:-translate-y-1.5 hover:bg-white hover:shadow-2xl"
+                        :class="tone(ti + 2).hover"
                     >
-                        <span class="absolute inset-x-0 top-0 h-1 bg-gradient-to-r from-violet-400 to-rose-400 opacity-0 transition group-hover:opacity-100" />
+                        <span class="absolute inset-x-0 top-0 h-1.5 bg-gradient-to-r" :class="tone(ti + 2).top" />
                         <span class="pointer-events-none absolute right-5 top-2 select-none font-display text-7xl font-black leading-none text-violet-200/70">“</span>
                         <div class="relative flex gap-0.5 text-amber-400">
                             <Icon v-for="n in t.rating" :key="n" name="star" class="h-5 w-5 fill-current" />
                         </div>
                         <p class="relative mt-4 flex-1 text-sm leading-relaxed text-slate-600">"{{ t.message }}"</p>
                         <div class="relative mt-5 flex items-center gap-3 border-t border-violet-100 pt-4">
-                            <span class="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-gradient-to-br from-violet-500 to-rose-400 text-sm font-bold text-white">{{ t.name?.charAt(0) }}</span>
+                            <span class="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-gradient-to-br text-sm font-bold text-white shadow-md" :class="tone(ti + 2).avatar">{{ t.name?.charAt(0) }}</span>
                             <div class="min-w-0">
                                 <p class="text-sm font-semibold text-brand-900">{{ t.name }}</p>
                                 <p class="text-xs text-slate-500">{{ t.designation }}<span v-if="t.company"> · {{ t.company }}</span></p>
@@ -367,7 +375,7 @@ const formatDate = (d) => new Date(d).toLocaleDateString('en-GB', { day: 'numeri
         </section>
 
         <!-- Clients / partners -->
-        <section v-if="logos.length" class="border-y border-slate-100 bg-white py-14">
+        <section v-if="logos.length" class="border-y border-violet-100 bg-gradient-to-r from-sky-50/60 via-white to-violet-50/60 py-14">
             <div class="container-x">
                 <p class="text-center text-xs font-semibold uppercase tracking-widest text-slate-400">{{ c('home.clients.title') }}</p>
             </div>

@@ -28,7 +28,7 @@ const linkTag = (href) => (href?.startsWith('/') ? Link : 'a');
             <div class="container-x">
                 <div class="grid grid-cols-2 gap-4 rounded-3xl border border-slate-200/70 bg-white p-5 shadow-xl shadow-slate-900/5 sm:p-7 lg:grid-cols-4">
                     <div v-for="(item, i) in list('packages.trust.items')" :key="i" class="flex items-center gap-3">
-                        <span class="flex h-12 w-12 shrink-0 items-center justify-center rounded-2xl bg-gradient-to-br from-brand-50 to-accent-100 text-brand-600">
+                        <span class="flex h-12 w-12 shrink-0 items-center justify-center rounded-2xl bg-gradient-to-br from-sky-400 to-violet-600 text-white shadow-md shadow-violet-500/25">
                             <Icon :name="item.icon" class="h-6 w-6" />
                         </span>
                         <span class="min-w-0">
@@ -83,7 +83,7 @@ const linkTag = (href) => (href?.startsWith('/') ? Link : 'a');
         </section>
 
         <!-- Why choose us -->
-        <section class="relative overflow-hidden bg-brand-900 py-20 text-white sm:py-24">
+        <section class="relative overflow-hidden bg-gradient-to-br from-brand-900 via-[#1e1b6b] to-violet-900 py-20 text-white sm:py-24">
             <div v-if="c('packages.why.image')" class="absolute inset-0 bg-cover bg-center" :style="{ backgroundImage: `url('${c('packages.why.image')}')` }" />
             <div class="absolute inset-0 bg-gradient-to-b from-brand-900/90 via-brand-900/80 to-brand-900/95" />
             <div class="grid-bg absolute inset-0 opacity-30 [mask-image:radial-gradient(ellipse_at_center,black,transparent_75%)]" />
@@ -133,7 +133,7 @@ const linkTag = (href) => (href?.startsWith('/') ? Link : 'a');
         </section>
 
         <!-- Bottom banner -->
-        <section class="relative overflow-hidden bg-brand-900 py-20 text-white sm:py-24">
+        <section class="relative overflow-hidden bg-gradient-to-br from-brand-900 via-[#1e1b6b] to-violet-900 py-20 text-white sm:py-24">
             <div v-if="c('packages.cta.image')" class="absolute inset-0 bg-cover bg-center" :style="{ backgroundImage: `url('${c('packages.cta.image')}')` }" />
             <div class="absolute inset-0 bg-gradient-to-r from-brand-900/90 via-brand-900/70 to-brand-900/40" />
             <div class="container-x relative max-w-3xl text-center">

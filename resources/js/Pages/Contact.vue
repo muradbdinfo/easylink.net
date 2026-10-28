@@ -94,7 +94,7 @@ const submit = () => {
                 <!-- Form -->
                 <form class="card space-y-5 p-6 shadow-xl shadow-slate-900/5 sm:p-8 lg:col-span-2" @submit.prevent="submit">
                     <div v-if="c('contact.form.title')" class="flex items-start gap-4">
-                        <span class="flex h-12 w-12 shrink-0 items-center justify-center rounded-2xl bg-brand-50 text-brand-600"><Icon name="paper-airplane" class="h-6 w-6" /></span>
+                        <span class="flex h-12 w-12 shrink-0 items-center justify-center rounded-2xl bg-gradient-to-br from-sky-400 to-violet-600 text-white shadow-md shadow-violet-500/25"><Icon name="paper-airplane" class="h-6 w-6" /></span>
                         <div>
                             <h2 class="text-xl font-extrabold tracking-tight text-brand-900">{{ c('contact.form.title') }}</h2>
                             <p v-if="c('contact.form.text')" class="mt-1 text-sm text-slate-500">{{ c('contact.form.text') }}</p>

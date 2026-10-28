@@ -76,7 +76,7 @@ const toggleFaq = (id) => (openFaq.value = openFaq.value === id ? null : id);
         </section>
 
         <!-- Numbers -->
-        <section v-if="stats.length" class="relative overflow-hidden bg-brand-900 py-20 text-white">
+        <section v-if="stats.length" class="relative overflow-hidden bg-gradient-to-br from-brand-900 via-[#1e1b6b] to-violet-900 py-20 text-white">
             <div class="grid-bg absolute inset-0 opacity-40 [mask-image:radial-gradient(ellipse_at_center,black,transparent_75%)]" />
             <div class="pointer-events-none absolute -right-20 -top-20 h-72 w-72 rounded-full bg-accent-500/30 blur-3xl" />
             <div class="container-x relative">
@@ -105,7 +105,7 @@ const toggleFaq = (id) => (openFaq.value = openFaq.value === id ? null : id);
                 </div>
                 <div class="mt-14 grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-4">
                     <div v-for="(w, i) in list('about.why.items')" :key="i" class="flex items-start gap-4 rounded-3xl border border-slate-200/70 bg-white p-6 shadow-sm transition hover:border-brand-300 hover:shadow-lg">
-                        <span class="flex h-12 w-12 shrink-0 items-center justify-center rounded-2xl bg-brand-50 text-brand-600">
+                        <span class="flex h-12 w-12 shrink-0 items-center justify-center rounded-2xl bg-gradient-to-br from-sky-400 to-violet-600 text-white shadow-md shadow-violet-500/25">
                             <Icon :name="w.icon" class="h-6 w-6" />
                         </span>
                         <div>
@@ -141,7 +141,7 @@ const toggleFaq = (id) => (openFaq.value = openFaq.value === id ? null : id);
                     <div v-for="faq in faqs" :key="faq.id" class="card overflow-hidden" :class="openFaq === faq.id ? 'border-brand-300' : ''">
                         <button class="flex min-h-[56px] w-full items-center justify-between gap-4 px-6 py-4 text-left font-semibold text-brand-900" :aria-expanded="openFaq === faq.id" @click="toggleFaq(faq.id)">
                             {{ faq.question }}
-                            <span class="flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-brand-50 text-lg text-brand-600">{{ openFaq === faq.id ? '−' : '+' }}</span>
+                            <span class="flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-violet-100 text-lg text-violet-600">{{ openFaq === faq.id ? '−' : '+' }}</span>
                         </button>
                         <div v-if="openFaq === faq.id" class="rich border-t border-slate-100 px-6 py-5 text-slate-600" v-html="richHtml(faq.answer)" />
                     </div>

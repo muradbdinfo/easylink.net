@@ -94,7 +94,7 @@ const isExternal = (url) => /^(https?:)?\/\//.test(url) || url?.startsWith('mail
                             :href="route('services.show', r.slug)"
                             class="card group flex items-center gap-4 p-5 transition hover:-translate-y-0.5 hover:border-brand-300 hover:shadow-lg"
                         >
-                            <span class="flex h-11 w-11 shrink-0 items-center justify-center rounded-2xl bg-brand-50 text-brand-600 transition group-hover:bg-brand-600 group-hover:text-white">
+                            <span class="flex h-11 w-11 shrink-0 items-center justify-center rounded-2xl bg-gradient-to-br from-sky-400 to-violet-600 text-white shadow-md shadow-violet-500/25 transition group-hover:bg-brand-600 group-hover:text-white">
                                 <Icon :name="r.icon" class="h-6 w-6" />
                             </span>
                             <span class="min-w-0 flex-1 text-sm font-semibold text-brand-900">{{ r.title }}</span>

@@ -142,6 +142,13 @@ const itemTitle = (item, field) => item[Object.keys(field.fields)[0]] || 'New it
                                             <option v-for="n in iconNames" :key="n" :value="n">{{ n }}</option>
                                         </select>
                                     </div>
+                                    <div v-else-if="sub.type === 'select'" class="mt-1 flex items-center gap-2">
+                                        <span class="h-9 w-14 shrink-0 rounded-md bg-gradient-to-r ring-1 ring-slate-200" :class="item[subKey]" />
+                                        <select v-model="item[subKey]" class="w-full rounded-md border-slate-300 text-sm">
+                                            <option v-if="item[subKey] && !Object.keys(sub.options).includes(item[subKey])" :value="item[subKey]">Custom ({{ item[subKey] }})</option>
+                                            <option v-for="(label, value) in sub.options" :key="value" :value="value">{{ label }}</option>
+                                        </select>
+                                    </div>
                                     <TextInput v-else v-model="item[subKey]" class="mt-1 w-full" />
                                 </div>
                             </div>

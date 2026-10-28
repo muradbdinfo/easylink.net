@@ -53,7 +53,7 @@ class DatabaseSeeder extends Seeder
             'map_url' => 'https://maps.app.goo.gl/zebS1DMWdbscBFhn7?g_st=aw',
             'map_embed' => 'https://maps.google.com/maps?q=22.3545813,91.8367228&z=17&output=embed',
             'about_text' => "EasyLink has been delivering dependable fiber-optic internet and corporate connectivity across Bangladesh since 2010. With our own nationwide backbone, a 24/7 Network Operations Center and a skilled technical team, we serve home and corporate customers in all 64 districts.\n\nOur promise is simple: fast, stable internet that just works, backed by people who pick up the phone.",
-            'facebook_url' => 'https://facebook.com/easylinkbd',
+            'facebook_url' => 'https://www.facebook.com/elbd.net/',
             'youtube_url' => 'https://youtube.com/@easylinkbd',
             'linkedin_url' => 'https://linkedin.com/company/easylinkbd',
             'instagram_url' => 'https://instagram.com/easylinkbd',

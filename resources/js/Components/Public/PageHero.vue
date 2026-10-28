@@ -29,16 +29,18 @@ const icon = computed(() => field('icon'));
         <!-- picture -->
         <div v-if="image" class="absolute inset-0 bg-cover bg-center" :style="{ backgroundImage: `url('${image}')` }" />
         <!-- readability overlay -->
-        <div class="absolute inset-0 bg-gradient-to-b from-brand-900/80 via-brand-900/65 to-brand-900/90" />
+        <div class="absolute inset-0 bg-gradient-to-b from-brand-900/80 via-[#1e1b6b]/65 to-violet-900/90" />
         <div class="absolute inset-0 bg-gradient-to-r from-brand-900/70 via-transparent to-brand-900/40" />
         <div class="grid-bg absolute inset-0 opacity-40 [mask-image:radial-gradient(ellipse_at_center,black,transparent_75%)]" />
-        <div class="pointer-events-none absolute -top-24 right-0 h-72 w-72 rounded-full bg-accent-500/30 blur-3xl" />
-        <div class="pointer-events-none absolute -bottom-24 left-0 h-72 w-72 rounded-full bg-brand-500/30 blur-3xl" />
+        <div class="pointer-events-none absolute -top-24 right-0 h-72 w-72 rounded-full bg-fuchsia-500/30 blur-3xl" />
+        <div class="pointer-events-none absolute -bottom-24 left-0 h-72 w-72 rounded-full bg-accent-500/30 blur-3xl" />
         <!-- big watermark icon -->
         <Icon v-if="icon" :name="icon" class="pointer-events-none absolute -bottom-10 right-4 hidden h-64 w-64 -rotate-12 text-white/10 md:block lg:right-24" />
 
+        <div class="rainbow-bar absolute inset-x-0 bottom-0" />
+
         <div class="container-x relative text-center">
-            <span v-if="icon" class="mx-auto mb-5 flex h-14 w-14 items-center justify-center rounded-2xl bg-white/15 ring-1 ring-white/25 backdrop-blur">
+            <span v-if="icon" class="mx-auto mb-5 flex h-14 w-14 items-center justify-center rounded-2xl bg-gradient-to-br from-sky-400/40 to-fuchsia-400/40 ring-1 ring-white/30 backdrop-blur">
                 <Icon :name="icon" class="h-7 w-7" />
             </span>
             <span v-if="eyebrow" class="eyebrow-dark">{{ eyebrow }}</span>

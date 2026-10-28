@@ -24,6 +24,14 @@
     --color-accent-500: #0891e0;
     --color-accent-600: #0773b8;
     --color-accent-700: #075985;
+
+    /* Extra jewel tones for a richer, more colourful look */
+    --color-violet-grad: #7c3aed;
+    --color-fuchsia-grad: #d946ef;
+    --color-sun-300: #fcd34d;
+    --color-sun-400: #fbbf24;
+    --color-sun-500: #f59e0b;
+    --color-sun-600: #ea580c;
 }
 
 @layer base {
@@ -33,6 +41,11 @@
 
     body {
         @apply bg-white text-slate-600 antialiased;
+        background-image: radial-gradient(60rem 30rem at 100% 0%, rgb(124 58 237 / 0.04), transparent), radial-gradient(50rem 30rem at 0% 40%, rgb(8 145 224 / 0.04), transparent);
+    }
+
+    ::selection {
+        background: rgb(124 58 237 / 0.2);
     }
 
     h1, h2, h3, h4 {
@@ -46,31 +59,49 @@
     }
 
     .btn-primary {
-        @apply inline-flex items-center justify-center gap-2 rounded-full bg-accent-500 px-6 py-3 text-sm font-semibold text-white shadow-lg shadow-accent-500/25 transition duration-150 hover:bg-accent-600 hover:shadow-accent-500/40 disabled:opacity-60;
+        @apply inline-flex items-center justify-center gap-2 rounded-full bg-gradient-to-r from-accent-400 via-violet-500 to-fuchsia-500 bg-[length:200%_100%] bg-left px-6 py-3 text-sm font-semibold text-white shadow-lg shadow-violet-500/30 transition-all duration-300 hover:bg-right hover:shadow-fuchsia-500/40 disabled:opacity-60;
     }
 
     .btn-outline {
-        @apply inline-flex items-center justify-center gap-2 rounded-full border border-white/40 px-6 py-3 text-sm font-semibold text-white transition duration-150 hover:bg-white/10;
+        @apply inline-flex items-center justify-center gap-2 rounded-full border border-white/40 bg-white/5 px-6 py-3 text-sm font-semibold text-white backdrop-blur transition duration-150 hover:border-white/70 hover:bg-white/15;
     }
 
     .btn-secondary {
-        @apply inline-flex items-center justify-center gap-2 rounded-full bg-brand-900 px-6 py-3 text-sm font-semibold text-white transition duration-150 hover:bg-brand-700 disabled:opacity-60;
+        @apply inline-flex items-center justify-center gap-2 rounded-full bg-gradient-to-r from-violet-700 via-fuchsia-600 to-rose-500 bg-[length:200%_100%] bg-left px-6 py-3 text-sm font-semibold text-white shadow-md shadow-fuchsia-500/25 transition-all duration-300 hover:bg-right hover:shadow-lg disabled:opacity-60;
     }
 
     .eyebrow {
-        @apply inline-flex items-center gap-2 rounded-full border border-brand-200 bg-brand-50 px-3 py-1 text-xs font-semibold uppercase tracking-wider text-brand-700;
+        @apply inline-flex items-center gap-2 rounded-full border border-violet-200 bg-gradient-to-r from-brand-50 to-violet-50 px-3.5 py-1 text-xs font-semibold uppercase tracking-wider text-violet-700 shadow-sm;
     }
 
     .eyebrow-dark {
-        @apply inline-flex items-center gap-2 rounded-full border border-white/15 bg-white/10 px-3 py-1 text-xs font-semibold uppercase tracking-wider text-brand-300;
+        @apply inline-flex items-center gap-2 rounded-full border border-white/20 bg-gradient-to-r from-white/15 to-violet-300/15 px-3.5 py-1 text-xs font-semibold uppercase tracking-wider text-sky-200 backdrop-blur;
     }
 
     .section-title {
         @apply text-3xl font-extrabold tracking-tight text-brand-900 sm:text-4xl;
     }
 
+    /* little rainbow rule under section headings */
+    .section-title::after {
+        content: '';
+        @apply mt-4 block h-1 w-16 rounded-full bg-gradient-to-r from-accent-400 via-violet-500 to-rose-400;
+    }
+
+    .text-center .section-title::after {
+        @apply mx-auto;
+    }
+
     .section-subtitle {
-        @apply mt-3 text-lg text-slate-500;
+        @apply mt-4 text-lg text-slate-500;
+    }
+
+    .text-gradient {
+        @apply bg-gradient-to-r from-accent-500 via-violet-600 to-rose-500 bg-clip-text text-transparent;
+    }
+
+    .text-gradient-light {
+        @apply bg-gradient-to-r from-sky-300 via-violet-300 to-amber-200 bg-clip-text text-transparent;
     }
 
     .card {
@@ -78,7 +109,11 @@
     }
 
     .page-hero {
-        @apply relative overflow-hidden bg-brand-900 py-20 text-white;
+        @apply relative overflow-hidden bg-gradient-to-br from-brand-900 via-[#2a1a7a] to-fuchsia-800 py-20 text-white;
+    }
+
+    .rainbow-bar {
+        @apply h-1 w-full bg-gradient-to-r from-accent-400 via-violet-500 via-40% to-amber-400;
     }
 
     .field {

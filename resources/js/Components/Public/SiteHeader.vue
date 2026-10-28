@@ -53,13 +53,13 @@ onUnmounted(() => observer?.disconnect());
 watch([nav, () => c('layout.header.button_label'), () => settings.value.site_name, () => settings.value.logo], () => nextTick(fit));
 
 const navClass = (item) =>
-    isActive(item.href) ? 'bg-brand-50 text-brand-700' : 'text-slate-600 hover:bg-slate-100 hover:text-brand-900';
-const iconClass = (item) => (isActive(item.href) ? 'text-brand-600' : 'text-slate-400 group-hover:text-brand-600');
+    isActive(item.href) ? 'bg-gradient-to-r from-sky-50 to-violet-100 text-violet-700 shadow-sm' : 'text-slate-600 hover:bg-violet-50 hover:text-violet-700';
+const iconClass = (item) => (isActive(item.href) ? 'text-violet-600' : 'text-slate-400 group-hover:text-violet-600');
 </script>
 
 <template>
-    <header class="sticky top-0 z-50 border-b border-slate-200/70 bg-white/85 backdrop-blur-lg">
-        <div class="bg-brand-900 text-slate-300">
+    <header class="sticky top-0 z-50 border-b border-violet-100 bg-white/85 shadow-sm shadow-violet-900/5 backdrop-blur-lg">
+        <div class="bg-gradient-to-r from-brand-900 via-[#1e1b6b] to-violet-800 text-slate-200">
             <div class="container-x flex h-9 items-center justify-between text-xs">
                 <div class="hidden items-center gap-5 self-stretch sm:flex">
                     <a :href="`mailto:${settings.email}`" class="flex items-center gap-1.5 self-stretch hover:text-white">
@@ -72,7 +72,7 @@ const iconClass = (item) => (isActive(item.href) ? 'text-brand-600' : 'text-slat
                     </span>
                 </div>
                 <div class="flex w-full items-center justify-between gap-4 self-stretch whitespace-nowrap sm:w-auto sm:justify-end">
-                    <a :href="`tel:${settings.hotline}`" class="flex items-center gap-1.5 self-stretch font-semibold text-brand-300">
+                    <a :href="`tel:${settings.hotline}`" class="flex items-center gap-1.5 self-stretch font-semibold text-amber-300">
                         <Icon name="phone" class="h-3.5 w-3.5" />
                         {{ c('layout.header.support_label') }} {{ settings.hotline }}
                     </a>
@@ -91,7 +91,7 @@ const iconClass = (item) => (isActive(item.href) ? 'text-brand-600' : 'text-slat
         <div ref="row" class="container-x relative flex h-[72px] items-center justify-between gap-4">
             <Link ref="logo" :href="route('home')" class="flex shrink-0 items-center gap-2.5">
                 <img :src="settings.logo || '/images/logo-mark.png'" alt="EasyLink logo" class="h-12 w-12 object-contain" />
-                <span class="font-display text-xl font-extrabold tracking-tight whitespace-nowrap text-brand-900">{{ settings.site_name || 'EasyLink' }}</span>
+                <span class="text-gradient font-display text-xl font-extrabold tracking-tight whitespace-nowrap">{{ settings.site_name || 'EasyLink' }}</span>
             </Link>
 
             <!-- invisible copy of the full menu, only used to measure whether it fits -->
@@ -143,10 +143,10 @@ const iconClass = (item) => (isActive(item.href) ? 'text-brand-600' : 'text-slat
                     :href="item.href"
                     v-bind="linkProps(item.href)"
                     class="flex min-h-12 items-center gap-3 rounded-xl px-3 py-2 text-[15px] font-medium"
-                    :class="isActive(item.href) ? 'bg-brand-50 text-brand-700' : 'text-slate-600 hover:bg-slate-50'"
+                    :class="isActive(item.href) ? 'bg-gradient-to-r from-sky-50 to-violet-100 text-violet-700' : 'text-slate-600 hover:bg-violet-50'"
                     @click="mobileOpen = false"
                 >
-                    <span class="flex h-9 w-9 shrink-0 items-center justify-center rounded-xl" :class="isActive(item.href) ? 'bg-brand-600 text-white' : 'bg-brand-50 text-brand-600'">
+                    <span class="flex h-9 w-9 shrink-0 items-center justify-center rounded-xl" :class="isActive(item.href) ? 'bg-gradient-to-br from-sky-500 to-violet-600 text-white' : 'bg-violet-50 text-violet-600'">
                         <Icon :name="item.icon || 'sparkles'" class="h-5 w-5" />
                     </span>
                     {{ item.label }}
@@ -156,5 +156,6 @@ const iconClass = (item) => (isActive(item.href) ? 'text-brand-600' : 'text-slat
                 </component>
             </nav>
         </div>
+        <div class="rainbow-bar !h-0.5" />
     </header>
 </template>

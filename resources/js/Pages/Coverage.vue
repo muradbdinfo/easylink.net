@@ -104,7 +104,7 @@ const submit = () => {
         <section v-if="list('coverage.features').length" class="border-b border-slate-100 bg-white py-14">
             <div class="container-x grid grid-cols-1 gap-6 md:grid-cols-3">
                 <div v-for="(f, i) in list('coverage.features')" :key="i" class="flex items-start gap-4">
-                    <span class="flex h-12 w-12 shrink-0 items-center justify-center rounded-2xl bg-brand-50 text-brand-600">
+                    <span class="flex h-12 w-12 shrink-0 items-center justify-center rounded-2xl bg-gradient-to-br from-sky-400 to-violet-600 text-white shadow-md shadow-violet-500/25">
                         <Icon :name="f.icon" class="h-6 w-6" />
                     </span>
                     <div>

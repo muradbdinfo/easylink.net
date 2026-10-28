@@ -12,10 +12,10 @@ const year = new Date().getFullYear();
 
 const social = computed(() =>
     [
-        { key: 'facebook_url', label: 'Facebook' },
-        { key: 'youtube_url', label: 'YouTube' },
-        { key: 'linkedin_url', label: 'LinkedIn' },
-        { key: 'instagram_url', label: 'Instagram' },
+        { key: 'facebook_url', label: 'Facebook', color: 'bg-blue-500' },
+        { key: 'youtube_url', label: 'YouTube', color: 'bg-red-500' },
+        { key: 'linkedin_url', label: 'LinkedIn', color: 'bg-sky-500' },
+        { key: 'instagram_url', label: 'Instagram', color: 'bg-gradient-to-br from-amber-400 via-rose-500 to-fuchsia-600' },
     ].filter((s) => settings.value[s.key]),
 );
 
@@ -31,8 +31,11 @@ const columns = computed(() => [
 </script>
 
 <template>
-    <footer class="relative overflow-hidden bg-brand-900 text-slate-300">
-        <div class="pointer-events-none absolute -top-32 left-1/2 h-64 w-[40rem] -translate-x-1/2 rounded-full bg-brand-500/20 blur-3xl" />
+    <footer class="relative overflow-hidden bg-gradient-to-br from-brand-900 via-[#1e1b6b] to-violet-900 text-slate-300">
+        <div class="rainbow-bar absolute inset-x-0 top-0" />
+        <div class="pointer-events-none absolute -top-32 left-1/2 h-64 w-[40rem] -translate-x-1/2 rounded-full bg-violet-500/25 blur-3xl" />
+        <div class="pointer-events-none absolute -bottom-32 right-0 h-72 w-72 rounded-full bg-rose-500/15 blur-3xl" />
+        <div class="pointer-events-none absolute -bottom-32 left-0 h-72 w-72 rounded-full bg-accent-500/20 blur-3xl" />
 
         <div class="container-x relative grid grid-cols-1 gap-10 py-16 sm:grid-cols-2 lg:grid-cols-4">
             <div>
@@ -50,7 +53,8 @@ const columns = computed(() => [
                         rel="noopener"
                         :aria-label="s.label"
                         :title="s.label"
-                        class="flex h-9 w-9 items-center justify-center rounded-full bg-white/10 text-xs font-semibold transition hover:bg-accent-500"
+                        class="flex h-9 w-9 items-center justify-center rounded-full text-xs font-semibold text-white shadow-md ring-1 ring-white/20 transition hover:-translate-y-0.5 hover:scale-110"
+                        :class="s.color"
                     >
                         {{ s.label[0] }}
                     </a>
@@ -58,7 +62,7 @@ const columns = computed(() => [
             </div>
 
             <div v-for="col in columns" :key="col.title">
-                <h4 class="text-sm font-semibold uppercase tracking-wider text-white">{{ col.title }}</h4>
+                <h4 class="text-sm font-semibold uppercase tracking-wider text-white after:mt-2 after:block after:h-0.5 after:w-8 after:rounded-full after:bg-gradient-to-r after:from-sky-400 after:to-fuchsia-400 after:content-['']">{{ col.title }}</h4>
                 <ul class="mt-5 space-y-1 text-sm">
                     <li v-for="item in col.links" :key="item.href + item.label">
                         <component
@@ -67,7 +71,7 @@ const columns = computed(() => [
                             v-bind="linkProps(item.href)"
                             class="group flex min-h-9 items-center gap-2.5 hover:text-white"
                         >
-                            <Icon v-if="item.icon" :name="item.icon" class="h-4 w-4 shrink-0 text-brand-400 transition group-hover:text-accent-400" />
+                            <Icon v-if="item.icon" :name="item.icon" class="h-4 w-4 shrink-0 text-brand-400 transition group-hover:text-amber-300" />
                             {{ item.label }}
                         </component>
                     </li>
@@ -75,7 +79,7 @@ const columns = computed(() => [
             </div>
 
             <div>
-                <h4 class="text-sm font-semibold uppercase tracking-wider text-white">{{ c('layout.footer.contact_title') }}</h4>
+                <h4 class="text-sm font-semibold uppercase tracking-wider text-white after:mt-2 after:block after:h-0.5 after:w-8 after:rounded-full after:bg-gradient-to-r after:from-sky-400 after:to-fuchsia-400 after:content-['']">{{ c('layout.footer.contact_title') }}</h4>
                 <ul class="mt-5 space-y-3.5 text-sm">
                     <li class="flex items-start gap-2.5">
                         <Icon name="phone" class="mt-0.5 h-4 w-4 shrink-0 text-brand-400" />

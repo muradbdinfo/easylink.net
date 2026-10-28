@@ -31,7 +31,7 @@ const logoSrc = (logo) => (logo.startsWith('/') || logo.startsWith('http') ? log
             <div class="container-x">
                 <div class="grid grid-cols-1 gap-4 rounded-3xl border border-slate-200/70 bg-white p-5 shadow-xl shadow-slate-900/5 sm:grid-cols-2 sm:p-7 lg:grid-cols-4">
                     <div v-for="(item, i) in list('corporate.highlights.items')" :key="i" class="flex items-center gap-3">
-                        <span class="flex h-12 w-12 shrink-0 items-center justify-center rounded-2xl bg-gradient-to-br from-brand-50 to-accent-100 text-brand-600">
+                        <span class="flex h-12 w-12 shrink-0 items-center justify-center rounded-2xl bg-gradient-to-br from-sky-400 to-violet-600 text-white shadow-md shadow-violet-500/25">
                             <Icon :name="item.icon" class="h-6 w-6" />
                         </span>
                         <span class="min-w-0">
@@ -96,7 +96,7 @@ const logoSrc = (logo) => (logo.startsWith('/') || logo.startsWith('http') ? log
                         class="card group relative overflow-hidden border-white bg-white/80 p-7 backdrop-blur-md transition duration-300 hover:-translate-y-1.5 hover:border-brand-300 hover:bg-white hover:shadow-2xl hover:shadow-brand-500/10"
                     >
                         <span class="absolute inset-x-0 top-0 h-1 bg-gradient-to-r from-brand-500 to-accent-400 opacity-0 transition group-hover:opacity-100" />
-                        <span class="flex h-14 w-14 items-center justify-center rounded-2xl bg-gradient-to-br from-brand-50 to-accent-100 text-brand-600 transition duration-300 group-hover:rotate-3 group-hover:from-brand-600 group-hover:to-accent-500 group-hover:text-white">
+                        <span class="flex h-14 w-14 items-center justify-center rounded-2xl bg-gradient-to-br from-sky-400 to-violet-600 text-white shadow-md shadow-violet-500/25 transition duration-300 group-hover:rotate-3 group-hover:from-violet-500 group-hover:to-fuchsia-500">
                             <Icon :name="service.icon" class="h-7 w-7" />
                         </span>
                         <h3 class="mt-5 text-lg font-bold text-brand-900">{{ service.title }}</h3>
@@ -110,7 +110,7 @@ const logoSrc = (logo) => (logo.startsWith('/') || logo.startsWith('http') ? log
         </section>
 
         <!-- Numbers band -->
-        <section class="relative overflow-hidden bg-brand-900 py-16 text-white sm:py-20">
+        <section class="relative overflow-hidden bg-gradient-to-br from-brand-900 via-[#1e1b6b] to-violet-900 py-16 text-white sm:py-20">
             <div v-if="c('corporate.stats.image')" class="absolute inset-0 bg-cover bg-center" :style="{ backgroundImage: `url('${c('corporate.stats.image')}')` }" />
             <div class="absolute inset-0 bg-gradient-to-b from-brand-900/90 via-brand-900/80 to-brand-900/95" />
             <div class="container-x relative grid grid-cols-2 gap-8 lg:grid-cols-4">
@@ -134,7 +134,7 @@ const logoSrc = (logo) => (logo.startsWith('/') || logo.startsWith('http') ? log
                 <div class="relative mt-14 grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-4">
                     <div v-for="(step, i) in list('corporate.process.items')" :key="i" class="card group relative p-7 text-center transition duration-300 hover:-translate-y-1.5 hover:shadow-xl">
                         <span class="absolute -top-4 left-1/2 flex h-8 w-8 -translate-x-1/2 items-center justify-center rounded-full bg-brand-900 text-sm font-bold text-white shadow">{{ i + 1 }}</span>
-                        <span class="mx-auto mt-2 flex h-16 w-16 items-center justify-center rounded-2xl bg-gradient-to-br from-brand-50 to-accent-100 text-brand-600 transition duration-300 group-hover:from-brand-600 group-hover:to-accent-500 group-hover:text-white">
+                        <span class="mx-auto mt-2 flex h-16 w-16 items-center justify-center rounded-2xl bg-gradient-to-br from-sky-400 to-violet-600 text-white shadow-md shadow-violet-500/25 transition duration-300 group-hover:from-violet-500 group-hover:to-fuchsia-500">
                             <Icon :name="step.icon" class="h-8 w-8" />
                         </span>
                         <h3 class="mt-5 text-lg font-bold text-brand-900">{{ step.title }}</h3>
@@ -176,7 +176,7 @@ const logoSrc = (logo) => (logo.startsWith('/') || logo.startsWith('http') ? log
         </section>
 
         <!-- Testimonials -->
-        <section v-if="testimonials.length" class="relative overflow-hidden bg-brand-900 py-20 text-white sm:py-24">
+        <section v-if="testimonials.length" class="relative overflow-hidden bg-gradient-to-br from-brand-900 via-[#1e1b6b] to-violet-900 py-20 text-white sm:py-24">
             <div class="grid-bg absolute inset-0 opacity-30 [mask-image:radial-gradient(ellipse_at_center,black,transparent_75%)]" />
             <div class="pointer-events-none absolute -right-24 -top-24 h-96 w-96 rounded-full bg-accent-500/25 blur-3xl" />
             <div class="container-x relative">
@@ -201,7 +201,7 @@ const logoSrc = (logo) => (logo.startsWith('/') || logo.startsWith('http') ? log
         </section>
 
         <!-- Bottom banner -->
-        <section class="relative overflow-hidden bg-brand-900 py-20 text-white sm:py-24">
+        <section class="relative overflow-hidden bg-gradient-to-br from-brand-900 via-[#1e1b6b] to-violet-900 py-20 text-white sm:py-24">
             <div v-if="c('corporate.cta.image')" class="absolute inset-0 bg-cover bg-center" :style="{ backgroundImage: `url('${c('corporate.cta.image')}')` }" />
             <div class="absolute inset-0 bg-gradient-to-r from-brand-900/95 via-brand-900/80 to-brand-900/50" />
             <div class="container-x relative max-w-3xl text-center">
