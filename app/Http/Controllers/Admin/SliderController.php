@@ -59,6 +59,11 @@ class SliderController extends Controller
             'image' => 'nullable|image|max:4096',
             'button_text' => 'nullable|string|max:100',
             'button_link' => 'nullable|string|max:255',
+            'speed_value' => 'nullable|string|max:20',
+            'speed_unit' => 'nullable|string|max:20',
+            'download' => 'nullable|string|max:30',
+            'upload' => 'nullable|string|max:30',
+            'latency' => 'nullable|string|max:30',
             'order' => 'nullable|integer',
             'is_active' => 'boolean',
         ]);

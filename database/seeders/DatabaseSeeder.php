@@ -33,6 +33,7 @@ class DatabaseSeeder extends Seeder
         $this->seedSliders();
         $this->seedPackages();
         $this->seedServices();
+        $this->call(ExtraServicesSeeder::class);
         $this->seedTestimonials();
         $this->seedPartners();
         $this->seedBlogPosts();
@@ -68,7 +69,7 @@ class DatabaseSeeder extends Seeder
     private function seedSliders(): void
     {
         $sliders = [
-            ['title' => 'High-speed fiber internet across Bangladesh', 'subtitle' => 'Unlimited plans from 10 Mbps to 35 Mbps with free installation.', 'button_text' => 'View packages', 'button_link' => '/packages', 'order' => 1],
+            ['title' => 'High-speed fiber internet across Bangladesh', 'subtitle' => 'Unlimited plans from 10 Mbps up to 200 Mbps+ with free installation.', 'button_text' => 'View packages', 'button_link' => '/packages', 'order' => 1],
             ['title' => 'Corporate connectivity solutions', 'subtitle' => 'Dedicated internet, MPLS, IP VPN and cloud solutions in one place.', 'button_text' => 'Explore solutions', 'button_link' => '/corporate', 'order' => 2],
             ['title' => 'Unlimited speed for gaming and streaming', 'subtitle' => 'Low-latency network for uninterrupted gaming and 4K streaming.', 'button_text' => 'Order now', 'button_link' => '/packages', 'order' => 3],
             ['title' => '24/7 customer support', 'subtitle' => 'Whenever something goes wrong, our team is right beside you.', 'button_text' => 'Contact us', 'button_link' => '/contact', 'order' => 4],
@@ -81,20 +82,8 @@ class DatabaseSeeder extends Seeder
 
     private function seedPackages(): void
     {
-        $home = [
-            ['name' => 'Bronze', 'speed_mbps' => 10, 'price' => 500, 'is_popular' => false, 'order' => 1, 'features' => ['Unlimited data', 'Free installation', '24/7 support', 'Free router (rental)']],
-            ['name' => 'Silver', 'speed_mbps' => 15, 'price' => 600, 'is_popular' => false, 'order' => 2, 'features' => ['Unlimited data', 'Free installation', '24/7 support', 'Free router (rental)']],
-            ['name' => 'Gold', 'speed_mbps' => 20, 'price' => 700, 'is_popular' => true, 'order' => 3, 'features' => ['Unlimited data', 'Free installation', '24/7 support', 'Free WiFi router', 'Priority support']],
-            ['name' => 'Platinum', 'speed_mbps' => 25, 'price' => 800, 'is_popular' => false, 'order' => 4, 'features' => ['Unlimited data', 'Free installation', '24/7 support', 'Free WiFi router', 'Gaming optimized']],
-            ['name' => 'Diamond', 'speed_mbps' => 35, 'price' => 1000, 'is_popular' => false, 'order' => 5, 'features' => ['Unlimited data', 'Free installation', 'Dedicated support line', 'Free dual-band router', 'Streaming optimized']],
-        ];
-
-        foreach ($home as $pkg) {
-            Package::updateOrCreate(
-                ['name' => $pkg['name'], 'type' => 'home'],
-                $pkg + ['type' => 'home', 'price_note' => '+ VAT / month', 'description' => 'FTTH fiber internet package for home users.', 'is_active' => true]
-            );
-        }
+        // current home price list (and the two EasyLink Optima / Alpha plans)
+        $this->call(UpdatePackagesSeeder::class);
 
         $corporate = [
             ['name' => 'Corporate Starter', 'speed_mbps' => 20, 'price' => 5000, 'order' => 1, 'features' => ['1:1 dedicated bandwidth', '99.9% uptime SLA', '24/7 NOC support', 'Free installation']],

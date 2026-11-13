@@ -10,7 +10,7 @@ class Slider extends Model
     use HasFactory;
 
     protected $fillable = [
-        'title', 'subtitle', 'image', 'button_text', 'button_link', 'order', 'is_active',
+        'title', 'subtitle', 'image', 'button_text', 'button_link', 'speed_value', 'speed_unit', 'download', 'upload', 'latency', 'order', 'is_active',
     ];
 
     protected $casts = [

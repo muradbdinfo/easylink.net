@@ -83,7 +83,7 @@ const linkTag = (href) => (href?.startsWith('/') ? Link : 'a');
         </section>
 
         <!-- Why choose us -->
-        <section class="relative overflow-hidden bg-gradient-to-br from-brand-900 via-[#1e1b6b] to-violet-900 py-20 text-white sm:py-24">
+        <section class="relative overflow-hidden bg-gradient-to-br from-brand-900 via-brand-800 to-violet-900 py-20 text-white sm:py-24">
             <div v-if="c('packages.why.image')" class="absolute inset-0 bg-cover bg-center" :style="{ backgroundImage: `url('${c('packages.why.image')}')` }" />
             <div class="absolute inset-0 bg-gradient-to-b from-brand-900/90 via-brand-900/80 to-brand-900/95" />
             <div class="grid-bg absolute inset-0 opacity-30 [mask-image:radial-gradient(ellipse_at_center,black,transparent_75%)]" />
@@ -133,7 +133,7 @@ const linkTag = (href) => (href?.startsWith('/') ? Link : 'a');
         </section>
 
         <!-- Bottom banner -->
-        <section class="relative overflow-hidden bg-gradient-to-br from-brand-900 via-[#1e1b6b] to-violet-900 py-20 text-white sm:py-24">
+        <section class="relative overflow-hidden bg-gradient-to-br from-brand-900 via-brand-800 to-violet-900 py-20 text-white sm:py-24">
             <div v-if="c('packages.cta.image')" class="absolute inset-0 bg-cover bg-center" :style="{ backgroundImage: `url('${c('packages.cta.image')}')` }" />
             <div class="absolute inset-0 bg-gradient-to-r from-brand-900/90 via-brand-900/70 to-brand-900/40" />
             <div class="container-x relative max-w-3xl text-center">

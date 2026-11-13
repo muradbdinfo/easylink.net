@@ -14,11 +14,11 @@ const { c, list } = useContent();
 // Card accent colours cycle so the grid feels lively; purely visual.
 const tones = [
     'from-brand-600 to-accent-500',
-    'from-violet-600 to-fuchsia-500',
-    'from-emerald-600 to-teal-500',
-    'from-amber-500 to-orange-500',
-    'from-rose-600 to-pink-500',
-    'from-indigo-600 to-brand-500',
+    'from-brand-800 to-brand-500',
+    'from-accent-600 to-accent-400',
+    'from-brand-700 to-accent-500',
+    'from-brand-900 to-brand-600',
+    'from-accent-700 to-brand-500',
 ];
 
 const isExternal = (url) => /^(https?:)?\/\//.test(url) || url?.startsWith('mailto:') || url?.startsWith('tel:');
@@ -64,7 +64,7 @@ const isExternal = (url) => /^(https?:)?\/\//.test(url) || url?.startsWith('mail
         </section>
 
         <!-- Why choose us -->
-        <section v-if="list('services.why.items').length" class="relative overflow-hidden bg-gradient-to-br from-brand-900 via-[#1e1b6b] to-violet-900 py-20 text-white">
+        <section v-if="list('services.why.items').length" class="relative overflow-hidden bg-gradient-to-br from-brand-900 via-brand-800 to-violet-900 py-20 text-white">
             <div v-if="c('services.why.image')" class="absolute inset-0 bg-cover bg-center opacity-40" :style="{ backgroundImage: `url('${c('services.why.image')}')` }" />
             <div class="absolute inset-0 bg-gradient-to-r from-brand-900 via-brand-900/85 to-brand-900/60" />
             <div class="grid-bg absolute inset-0 opacity-30 [mask-image:radial-gradient(ellipse_at_center,black,transparent_75%)]" />

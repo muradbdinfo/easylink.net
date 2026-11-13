@@ -33,7 +33,7 @@ const { c, list } = useContent();
 
             <div class="relative w-full max-w-md">
                 <Link href="/" class="flex justify-center">
-                    <img src="/images/logo-full.png" alt="EasyLink" class="h-20 w-auto object-contain sm:h-24" />
+                    <img src="/images/logo-full.png" alt="EasyLink" class="h-20 w-auto object-contain mix-blend-multiply sm:h-24" />
                 </Link>
 
                 <div class="mt-6 w-full rounded-3xl border border-slate-200/70 bg-white px-6 py-7 shadow-xl shadow-slate-900/5 sm:px-8">

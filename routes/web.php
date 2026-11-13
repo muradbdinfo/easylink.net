@@ -20,6 +20,8 @@ use App\Http\Controllers\ContactController;
 use App\Http\Controllers\CorporateController;
 use App\Http\Controllers\CoverageController;
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\PaymentController;
+use App\Http\Controllers\SpeedTestController;
 use App\Http\Controllers\PackageController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\ServiceController;
@@ -32,6 +34,8 @@ Route::get('/corporate', [CorporateController::class, 'index'])->name('corporate
 Route::get('/services', [ServiceController::class, 'index'])->name('services.index');
 Route::get('/services/{service:slug}', [ServiceController::class, 'show'])->name('services.show');
 Route::get('/about', [AboutController::class, 'index'])->name('about');
+Route::get('/speed-test', [SpeedTestController::class, 'index'])->name('speedtest.index');
+Route::get('/payment', [PaymentController::class, 'index'])->name('payment.index');
 Route::get('/coverage', [CoverageController::class, 'index'])->name('coverage.index');
 Route::post('/coverage/check', [CoverageController::class, 'check'])->name('coverage.check');
 Route::get('/blog', [BlogController::class, 'index'])->name('blog.index');

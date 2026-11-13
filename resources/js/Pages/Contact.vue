@@ -75,7 +75,7 @@ const submit = () => {
                         </div>
                     </div>
                     <div class="card group flex items-start gap-4 p-6 transition hover:-translate-y-0.5 hover:shadow-lg">
-                        <span class="flex h-12 w-12 shrink-0 items-center justify-center rounded-2xl bg-gradient-to-br from-emerald-600 to-teal-500 text-white shadow-md"><Icon name="map-pin" class="h-6 w-6" /></span>
+                        <span class="flex h-12 w-12 shrink-0 items-center justify-center rounded-2xl bg-gradient-to-br from-accent-600 to-accent-400 text-white shadow-md"><Icon name="map-pin" class="h-6 w-6" /></span>
                         <div>
                             <p class="font-bold text-brand-900">{{ c('contact.cards.address_title') }}</p>
                             <p class="mt-1 text-sm text-slate-500">{{ settings.address }}</p>
@@ -83,7 +83,7 @@ const submit = () => {
                         </div>
                     </div>
                     <div v-if="c('contact.cards.hours_title')" class="card group flex items-start gap-4 p-6 transition hover:-translate-y-0.5 hover:shadow-lg">
-                        <span class="flex h-12 w-12 shrink-0 items-center justify-center rounded-2xl bg-gradient-to-br from-amber-500 to-orange-500 text-white shadow-md"><Icon name="clock" class="h-6 w-6" /></span>
+                        <span class="flex h-12 w-12 shrink-0 items-center justify-center rounded-2xl bg-gradient-to-br from-brand-700 to-accent-500 text-white shadow-md"><Icon name="clock" class="h-6 w-6" /></span>
                         <div>
                             <p class="font-bold text-brand-900">{{ c('contact.cards.hours_title') }}</p>
                             <p class="mt-1 text-sm text-slate-500">{{ c('contact.cards.hours_text') }}</p>
@@ -92,7 +92,7 @@ const submit = () => {
                 </div>
 
                 <!-- Form -->
-                <form class="card space-y-5 p-6 shadow-xl shadow-slate-900/5 sm:p-8 lg:col-span-2" @submit.prevent="submit">
+                <form class="card static space-y-5 p-6 shadow-xl shadow-slate-900/5 sm:p-8 lg:col-span-2" @submit.prevent="submit">
                     <div v-if="c('contact.form.title')" class="flex items-start gap-4">
                         <span class="flex h-12 w-12 shrink-0 items-center justify-center rounded-2xl bg-gradient-to-br from-sky-400 to-violet-600 text-white shadow-md shadow-violet-500/25"><Icon name="paper-airplane" class="h-6 w-6" /></span>
                         <div>

@@ -71,7 +71,7 @@ const copyLink = async () => {
                     <article class="rich text-lg leading-relaxed text-slate-600" v-html="richHtml(post.content)" />
 
                     <div class="mt-12 flex flex-wrap items-center gap-3 border-t border-slate-200 pt-6">
-                        <span class="inline-flex items-center gap-2 text-sm font-semibold text-brand-900"><Icon name="rss" class="h-5 w-5 text-teal-600" />{{ c('blog.show.share') }}</span>
+                        <span class="inline-flex items-center gap-2 text-sm font-semibold text-brand-900"><Icon name="rss" class="h-5 w-5 text-sky-600" />{{ c('blog.show.share') }}</span>
                         <button type="button" class="min-h-[44px] rounded-full bg-[#1877f2] px-4 text-sm font-semibold text-white transition hover:opacity-90" @click="share('facebook')">Facebook</button>
                         <button type="button" class="min-h-[44px] rounded-full bg-[#25d366] px-4 text-sm font-semibold text-white transition hover:opacity-90" @click="share('whatsapp')">WhatsApp</button>
                         <button type="button" class="min-h-[44px] rounded-full bg-slate-900 px-4 text-sm font-semibold text-white transition hover:opacity-90" @click="share('x')">X</button>
@@ -82,10 +82,10 @@ const copyLink = async () => {
                 <aside class="space-y-4 lg:pt-2">
                     <template v-if="recent.length">
                         <h3 class="flex items-center gap-2 text-xs font-semibold uppercase tracking-widest text-slate-400"><Icon name="newspaper" class="h-4 w-4" />{{ c('blog.show.recent') }}</h3>
-                        <Link v-for="r in recent" :key="r.id" :href="route('blog.show', r.slug)" class="card group flex items-center gap-4 overflow-hidden p-3 transition hover:border-teal-300 hover:shadow-lg">
+                        <Link v-for="r in recent" :key="r.id" :href="route('blog.show', r.slug)" class="card group flex items-center gap-4 overflow-hidden p-3 transition hover:border-sky-300 hover:shadow-lg">
                             <img :src="cover(r)" :alt="r.title" loading="lazy" class="h-16 w-20 shrink-0 rounded-xl object-cover" />
                             <span class="min-w-0">
-                                <span class="line-clamp-2 text-sm font-semibold text-brand-900 transition group-hover:text-teal-700">{{ r.title }}</span>
+                                <span class="line-clamp-2 text-sm font-semibold text-brand-900 transition group-hover:text-sky-700">{{ r.title }}</span>
                                 <span class="mt-1 block text-xs text-slate-400">{{ formatDate(r.published_at) }}</span>
                             </span>
                         </Link>

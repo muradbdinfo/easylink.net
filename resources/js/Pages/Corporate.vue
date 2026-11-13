@@ -110,7 +110,7 @@ const logoSrc = (logo) => (logo.startsWith('/') || logo.startsWith('http') ? log
         </section>
 
         <!-- Numbers band -->
-        <section class="relative overflow-hidden bg-gradient-to-br from-brand-900 via-[#1e1b6b] to-violet-900 py-16 text-white sm:py-20">
+        <section class="relative overflow-hidden bg-gradient-to-br from-brand-900 via-brand-800 to-violet-900 py-16 text-white sm:py-20">
             <div v-if="c('corporate.stats.image')" class="absolute inset-0 bg-cover bg-center" :style="{ backgroundImage: `url('${c('corporate.stats.image')}')` }" />
             <div class="absolute inset-0 bg-gradient-to-b from-brand-900/90 via-brand-900/80 to-brand-900/95" />
             <div class="container-x relative grid grid-cols-2 gap-8 lg:grid-cols-4">
@@ -176,13 +176,13 @@ const logoSrc = (logo) => (logo.startsWith('/') || logo.startsWith('http') ? log
         </section>
 
         <!-- Testimonials -->
-        <section v-if="testimonials.length" class="relative overflow-hidden bg-gradient-to-br from-brand-900 via-[#1e1b6b] to-violet-900 py-20 text-white sm:py-24">
+        <section v-if="testimonials.length" class="relative overflow-hidden bg-gradient-to-br from-brand-900 via-brand-800 to-violet-900 py-20 text-white sm:py-24">
             <div class="grid-bg absolute inset-0 opacity-30 [mask-image:radial-gradient(ellipse_at_center,black,transparent_75%)]" />
             <div class="pointer-events-none absolute -right-24 -top-24 h-96 w-96 rounded-full bg-accent-500/25 blur-3xl" />
             <div class="container-x relative">
                 <h2 class="text-center text-3xl font-extrabold tracking-tight sm:text-4xl">{{ c('corporate.testimonials.title') }}</h2>
                 <div class="mt-14 grid grid-cols-1 gap-6 lg:grid-cols-2">
-                    <div v-for="t in testimonials" :key="t.id" class="relative rounded-3xl border border-white/10 bg-white/5 p-8 backdrop-blur">
+                    <div v-for="t in testimonials" :key="t.id" class="hover-tile-dark relative rounded-3xl border border-white/10 bg-white/5 p-8 backdrop-blur">
                         <span class="pointer-events-none absolute right-6 top-3 select-none font-display text-7xl font-black leading-none text-white/10">“</span>
                         <div class="relative flex gap-0.5 text-amber-400">
                             <Icon v-for="n in t.rating" :key="n" name="star" class="h-5 w-5 fill-current" />
@@ -201,7 +201,7 @@ const logoSrc = (logo) => (logo.startsWith('/') || logo.startsWith('http') ? log
         </section>
 
         <!-- Bottom banner -->
-        <section class="relative overflow-hidden bg-gradient-to-br from-brand-900 via-[#1e1b6b] to-violet-900 py-20 text-white sm:py-24">
+        <section class="relative overflow-hidden bg-gradient-to-br from-brand-900 via-brand-800 to-violet-900 py-20 text-white sm:py-24">
             <div v-if="c('corporate.cta.image')" class="absolute inset-0 bg-cover bg-center" :style="{ backgroundImage: `url('${c('corporate.cta.image')}')` }" />
             <div class="absolute inset-0 bg-gradient-to-r from-brand-900/95 via-brand-900/80 to-brand-900/50" />
             <div class="container-x relative max-w-3xl text-center">

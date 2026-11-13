@@ -46,7 +46,7 @@ const submit = () => {
             <div class="grid-bg absolute inset-0 opacity-30 [mask-image:radial-gradient(ellipse_at_center,black,transparent_75%)]" />
 
             <div class="container-x relative max-w-2xl">
-                <form class="card space-y-5 border-white/40 bg-white/95 p-6 shadow-2xl shadow-black/30 backdrop-blur sm:p-8" @submit.prevent="submit">
+                <form class="card static space-y-5 border-white/40 bg-white/95 p-6 shadow-2xl shadow-black/30 backdrop-blur sm:p-8" @submit.prevent="submit">
                     <div class="flex items-start gap-4">
                         <span class="flex h-12 w-12 shrink-0 items-center justify-center rounded-2xl bg-gradient-to-br from-brand-600 to-accent-500 text-white shadow-lg">
                             <Icon name="map-pin" class="h-6 w-6" />
@@ -83,10 +83,10 @@ const submit = () => {
                 <div
                     v-if="result"
                     class="mt-6 rounded-3xl border p-6 shadow-xl backdrop-blur"
-                    :class="result.available ? 'border-emerald-200 bg-emerald-50/95 text-emerald-900' : 'border-rose-200 bg-rose-50/95 text-rose-900'"
+                    :class="result.available ? 'border-emerald-200 bg-emerald-50/95 text-emerald-900' : 'border-sky-200 bg-sky-50/95 text-rose-900'"
                 >
                     <div class="flex items-start gap-3">
-                        <span class="flex h-10 w-10 shrink-0 items-center justify-center rounded-full text-white" :class="result.available ? 'bg-emerald-500' : 'bg-rose-500'">
+                        <span class="flex h-10 w-10 shrink-0 items-center justify-center rounded-full text-white" :class="result.available ? 'bg-emerald-500' : 'bg-sky-500'">
                             <Icon :name="result.available ? 'check' : 'signal'" class="h-5 w-5" />
                         </span>
                         <div>

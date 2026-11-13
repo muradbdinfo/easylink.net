@@ -28,7 +28,7 @@ const rest = computed(() => (featured.value ? props.posts.data.slice(1) : props.
         <PageHero page-key="blog" />
 
         <section class="relative overflow-hidden bg-gradient-to-b from-sky-50 via-white to-white py-16 sm:py-20">
-            <div class="pointer-events-none absolute -left-24 top-10 h-72 w-72 rounded-full bg-teal-200/40 blur-3xl" />
+            <div class="pointer-events-none absolute -left-24 top-10 h-72 w-72 rounded-full bg-sky-200/40 blur-3xl" />
             <div class="pointer-events-none absolute -right-24 top-96 h-72 w-72 rounded-full bg-amber-200/40 blur-3xl" />
 
             <div class="container-x relative">
@@ -46,9 +46,9 @@ const rest = computed(() => (featured.value ? props.posts.data.slice(1) : props.
                             <span class="inline-flex items-center gap-1.5"><Icon name="calendar" class="h-4 w-4" />{{ formatDate(featured.published_at) }}</span>
                             <span class="inline-flex items-center gap-1.5"><Icon name="clock" class="h-4 w-4" />{{ readMinutes(featured) }} {{ c('blog.show.read_time') }}</span>
                         </p>
-                        <h2 class="mt-3 text-2xl font-extrabold leading-tight tracking-tight text-brand-900 transition group-hover:text-teal-700 sm:text-3xl">{{ featured.title }}</h2>
+                        <h2 class="mt-3 text-2xl font-extrabold leading-tight tracking-tight text-brand-900 transition group-hover:text-sky-700 sm:text-3xl">{{ featured.title }}</h2>
                         <p class="mt-3 line-clamp-3 text-slate-500">{{ featured.excerpt }}</p>
-                        <span class="mt-6 inline-flex items-center gap-2 text-sm font-semibold text-teal-600">
+                        <span class="mt-6 inline-flex items-center gap-2 text-sm font-semibold text-sky-600">
                             {{ c('blog.index.read_more') }}
                             <Icon name="chevron-right" class="h-4 w-4 transition group-hover:translate-x-1" />
                         </span>
@@ -57,7 +57,7 @@ const rest = computed(() => (featured.value ? props.posts.data.slice(1) : props.
 
                 <!-- Grid -->
                 <h3 v-if="rest.length" class="mt-14 flex items-center gap-3 text-xl font-extrabold text-brand-900">
-                    <span class="flex h-9 w-9 items-center justify-center rounded-xl bg-teal-50 text-teal-600"><Icon name="newspaper" class="h-5 w-5" /></span>
+                    <span class="flex h-9 w-9 items-center justify-center rounded-xl bg-sky-50 text-sky-600"><Icon name="newspaper" class="h-5 w-5" /></span>
                     {{ c('blog.index.latest_title') }}
                 </h3>
                 <div class="mt-6 grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3" :class="rest.length ? '' : 'hidden'">
@@ -65,20 +65,20 @@ const rest = computed(() => (featured.value ? props.posts.data.slice(1) : props.
                         v-for="post in rest"
                         :key="post.id"
                         :href="route('blog.show', post.slug)"
-                        class="card group relative flex flex-col overflow-hidden border-white transition duration-300 hover:-translate-y-1.5 hover:border-teal-300 hover:shadow-2xl hover:shadow-teal-500/10"
+                        class="card group relative flex flex-col overflow-hidden border-white transition duration-300 hover:-translate-y-1.5 hover:border-sky-300 hover:shadow-2xl hover:shadow-sky-500/10"
                     >
                         <div class="relative h-48 overflow-hidden bg-brand-900">
                             <img :src="cover(post)" :alt="post.title" loading="lazy" class="h-full w-full object-cover transition duration-500 group-hover:scale-105" />
-                            <span class="absolute inset-0 bg-gradient-to-t from-teal-900/40 to-transparent opacity-0 transition group-hover:opacity-100" />
+                            <span class="absolute inset-0 bg-gradient-to-t from-sky-900/40 to-transparent opacity-0 transition group-hover:opacity-100" />
                         </div>
                         <div class="flex flex-1 flex-col p-6">
                             <p class="flex flex-wrap items-center gap-x-3 gap-y-1 text-xs font-medium text-slate-400">
-                                <span class="inline-flex items-center gap-1.5 rounded-full bg-teal-50 px-2.5 py-1 text-teal-700"><Icon name="calendar" class="h-3.5 w-3.5" />{{ formatDate(post.published_at) }}</span>
+                                <span class="inline-flex items-center gap-1.5 rounded-full bg-sky-50 px-2.5 py-1 text-sky-700"><Icon name="calendar" class="h-3.5 w-3.5" />{{ formatDate(post.published_at) }}</span>
                                 <span class="inline-flex items-center gap-1"><Icon name="clock" class="h-3.5 w-3.5" />{{ readMinutes(post) }} {{ c('blog.show.read_time') }}</span>
                             </p>
-                            <h3 class="mt-3 line-clamp-2 text-lg font-bold text-brand-900 transition group-hover:text-teal-700">{{ post.title }}</h3>
+                            <h3 class="mt-3 line-clamp-2 text-lg font-bold text-brand-900 transition group-hover:text-sky-700">{{ post.title }}</h3>
                             <p class="mt-2 line-clamp-2 flex-1 text-sm text-slate-500">{{ post.excerpt }}</p>
-                            <span class="mt-4 inline-flex items-center gap-1 text-sm font-semibold text-teal-600">
+                            <span class="mt-4 inline-flex items-center gap-1 text-sm font-semibold text-sky-600">
                                 {{ c('blog.index.read_more') }}
                                 <Icon name="chevron-right" class="h-4 w-4 transition group-hover:translate-x-1" />
                             </span>

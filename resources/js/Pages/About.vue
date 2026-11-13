@@ -38,7 +38,7 @@ const toggleFaq = (id) => (openFaq.value = openFaq.value === id ? null : id);
                 </div>
                 <div class="relative">
                     <div class="pointer-events-none absolute -inset-4 rounded-[2rem] bg-gradient-to-br from-brand-100 via-white to-accent-100 opacity-80" />
-                    <img :src="c('about.story.image')" :alt="c('about.story.title')" loading="lazy" class="relative aspect-[4/3] w-full rounded-3xl object-cover shadow-2xl" />
+                    <img :src="c('about.story.image')" :alt="c('about.story.title')" loading="lazy" class="relative aspect-[4/3] w-full rounded-3xl object-cover transition duration-700 hover:scale-[1.03] shadow-2xl" />
                     <div class="absolute -bottom-6 left-4 flex items-center gap-3 rounded-2xl bg-white px-4 py-3 shadow-xl sm:-left-6">
                         <span class="flex h-11 w-11 items-center justify-center rounded-xl bg-gradient-to-br from-brand-600 to-accent-500 text-white">
                             <Icon :name="c('about.story.badge_icon')" class="h-6 w-6" />
@@ -76,7 +76,7 @@ const toggleFaq = (id) => (openFaq.value = openFaq.value === id ? null : id);
         </section>
 
         <!-- Numbers -->
-        <section v-if="stats.length" class="relative overflow-hidden bg-gradient-to-br from-brand-900 via-[#1e1b6b] to-violet-900 py-20 text-white">
+        <section v-if="stats.length" class="relative overflow-hidden bg-gradient-to-br from-brand-900 via-brand-800 to-violet-900 py-20 text-white">
             <div class="grid-bg absolute inset-0 opacity-40 [mask-image:radial-gradient(ellipse_at_center,black,transparent_75%)]" />
             <div class="pointer-events-none absolute -right-20 -top-20 h-72 w-72 rounded-full bg-accent-500/30 blur-3xl" />
             <div class="container-x relative">
@@ -85,7 +85,7 @@ const toggleFaq = (id) => (openFaq.value = openFaq.value === id ? null : id);
                     <h2 class="mt-4 text-3xl font-extrabold tracking-tight sm:text-4xl">{{ c('about.stats.title') }}</h2>
                 </div>
                 <div class="mt-12 grid grid-cols-2 gap-5 lg:grid-cols-4">
-                    <div v-for="stat in stats" :key="stat.id" class="flex flex-col items-center rounded-3xl border border-white/10 bg-white/5 p-6 text-center backdrop-blur">
+                    <div v-for="stat in stats" :key="stat.id" class="hover-tile-dark flex flex-col items-center rounded-3xl border border-white/10 bg-white/5 p-6 text-center backdrop-blur">
                         <span class="flex h-12 w-12 items-center justify-center rounded-2xl bg-white/10 text-brand-300">
                             <Icon :name="stat.icon" class="h-6 w-6" />
                         </span>
@@ -104,7 +104,7 @@ const toggleFaq = (id) => (openFaq.value = openFaq.value === id ? null : id);
                     <h2 class="section-title mt-4">{{ c('about.why.title') }}</h2>
                 </div>
                 <div class="mt-14 grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-4">
-                    <div v-for="(w, i) in list('about.why.items')" :key="i" class="flex items-start gap-4 rounded-3xl border border-slate-200/70 bg-white p-6 shadow-sm transition hover:border-brand-300 hover:shadow-lg">
+                    <div v-for="(w, i) in list('about.why.items')" :key="i" class="hover-tile flex items-start gap-4 rounded-3xl border border-slate-200/70 bg-white p-6 shadow-sm transition hover:border-brand-300 hover:shadow-lg">
                         <span class="flex h-12 w-12 shrink-0 items-center justify-center rounded-2xl bg-gradient-to-br from-sky-400 to-violet-600 text-white shadow-md shadow-violet-500/25">
                             <Icon :name="w.icon" class="h-6 w-6" />
                         </span>

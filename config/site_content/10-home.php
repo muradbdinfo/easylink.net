@@ -18,9 +18,11 @@ $heading = function (string $key, string $eyebrow, string $title, ?string $subti
     return $fields;
 };
 
+
+$heroPictures = ['family-sofa', 'team-office', 'father-son-tv', 'support-agent', 'couple-tablet', 'man-laptop-home'];
 $hero = [];
 for ($i = 1; $i <= 6; $i++) {
-    $hero["home.hero.image_$i"] = ['label' => "Default slider picture $i", 'type' => 'image', 'default' => "/images/hero/hero-$i.jpg"];
+    $hero["home.hero.image_$i"] = ['label' => "Default slider picture $i", 'type' => 'image', 'default' => '/images/stock/'.$heroPictures[$i - 1].'.jpg'];
 }
 $hero['home.hero.image_1']['help'] = 'Shown behind slide 1, 2, 3… when a slider has no picture of its own (slide 7 starts again from picture 1). Wide picture, at least 1600px.';
 
@@ -31,33 +33,25 @@ return [
             'title' => 'Hero slider',
             'fields' => [
                 'home.hero.badge' => ['label' => 'Badge text', 'type' => 'text', 'default' => 'BTRC-approved zonal ISP'],
-                'home.hero.coverage_button' => ['label' => '"Check coverage" button label', 'type' => 'text', 'default' => 'Check coverage'],
                 ...$hero,
+                'home.hero.price' => ['label' => 'Price under the heading', 'type' => 'text', 'default' => '', 'help' => 'Leave empty to show the cheapest home package automatically.'],
+                'home.hero.price_unit' => ['label' => 'Text after the price', 'type' => 'text', 'default' => '/Month'],
+                'home.hero.phone_label' => ['label' => 'Label above the hotline number', 'type' => 'text', 'default' => 'Customer Service:'],
+                'home.hero.coverage_button' => ['label' => '"Check coverage" button label', 'type' => 'text', 'default' => 'Check coverage'],
             ],
         ],
         [
-            'title' => 'Hero — live speed card',
+            'title' => 'Hero — plan card (real packages)',
             'fields' => [
-                'home.speed.title' => ['label' => 'Card title', 'type' => 'text', 'default' => 'Live speed'],
-                'home.speed.status' => ['label' => 'Status text', 'type' => 'text', 'default' => 'Online'],
-                'home.speed.value' => ['label' => 'Big number', 'type' => 'text', 'default' => '35'],
-                'home.speed.unit' => ['label' => 'Unit', 'type' => 'text', 'default' => 'Mbps'],
-                'home.speed.rows' => [
-                    'label' => 'Bars',
-                    'type' => 'list',
-                    'default' => [
-                        ['label' => 'Download', 'value' => '35 Mbps', 'percent' => '92'],
-                        ['label' => 'Upload', 'value' => '35 Mbps', 'percent' => '88'],
-                        ['label' => 'Latency', 'value' => '4 ms', 'percent' => '12'],
-                    ],
-                    'fields' => [
-                        'label' => ['label' => 'Name', 'type' => 'text'],
-                        'value' => ['label' => 'Value shown on the right', 'type' => 'text'],
-                        'percent' => ['label' => 'Bar length (0-100)', 'type' => 'text'],
-                    ],
-                ],
-                'home.speed.badge_title' => ['label' => 'Floating badge — title', 'type' => 'text', 'default' => 'Free installation'],
-                'home.speed.badge_text' => ['label' => 'Floating badge — text', 'type' => 'text', 'default' => 'on all home plans'],
+                'home.speed.title' => ['label' => 'Card title', 'type' => 'text', 'default' => 'Our plans', 'help' => 'The card shows the real home packages one after another (name, price, speed). Edit them in Admin → Packages.'],
+                'home.speed.status' => ['label' => 'Small status text (empty hides it)', 'type' => 'text', 'default' => ''],
+                'home.speed.prefix' => ['label' => 'Small text above the number', 'type' => 'text', 'default' => 'Up to'],
+                'home.speed.download' => ['label' => 'Download label', 'type' => 'text', 'default' => 'Download'],
+                'home.speed.upload' => ['label' => 'Upload label', 'type' => 'text', 'default' => 'Upload'],
+                'home.speed.show_upload' => ['label' => 'Show the upload box (1 = yes, 0 = no)', 'type' => 'text', 'default' => '1', 'help' => 'Packages only store one speed. The upload box shows the same speed, so type 0 if your upload is different.'],
+                'home.speed.order_button' => ['label' => 'Order button', 'type' => 'text', 'default' => 'Order now'],
+                'home.speed.badge_title' => ['label' => 'Bottom line — bold part (empty hides the line)', 'type' => 'text', 'default' => 'Free installation'],
+                'home.speed.badge_text' => ['label' => 'Bottom line — rest of the text', 'type' => 'text', 'default' => 'on all home plans'],
             ],
         ],
         [
@@ -72,6 +66,7 @@ return [
             'title' => 'Services section',
             'fields' => [
                 ...$heading('home.services', 'What we do', 'Everything connectivity, one provider', 'From the living room to the data center — complete solutions under one roof.'),
+                'home.services.button' => ['label' => '"All services" button label (empty hides it)', 'type' => 'text', 'default' => 'View all services'],
                 'home.services.link_label' => ['label' => 'Link label on each card', 'type' => 'text', 'default' => 'Learn more'],
             ],
         ],
@@ -99,7 +94,7 @@ return [
         [
             'title' => 'Free quote card',
             'fields' => [
-                'home.quote.image' => ['label' => 'Picture', 'type' => 'image', 'default' => '/images/router.svg'],
+                'home.quote.image' => ['label' => 'Picture', 'type' => 'image', 'default' => '/images/stock/support-agent.jpg'],
                 'home.quote.image_alt' => ['label' => 'Picture description', 'type' => 'text', 'default' => 'EasyLink fiber router'],
                 'home.quote.title' => ['label' => 'Title', 'type' => 'text', 'default' => 'Get a free quote'],
                 'home.quote.text' => ['label' => 'Text', 'type' => 'textarea', 'default' => 'Tell us your location and needs — our team will get back to you shortly.'],
@@ -129,15 +124,15 @@ return [
                     'label' => 'Cards',
                     'type' => 'list',
                     'default' => [
-                        ['icon' => 'tv', 'title' => 'Live TV', 'desc' => 'Live broadcasts & channels.', 'cta' => 'Watch now', 'live' => '1', 'color' => 'from-red-600 via-rose-600 to-orange-500', 'href' => 'http://10.91.91.91'],
-                        ['icon' => 'tv', 'title' => 'Live TV 2', 'desc' => 'Live broadcasts & channels, alternate server.', 'cta' => 'Watch now', 'live' => '1', 'color' => 'from-fuchsia-600 via-pink-600 to-rose-500', 'href' => 'http://10.91.91.91/index2.html'],
-                        ['icon' => 'globe', 'title' => 'TV Web', 'desc' => 'Web-based TV content & shows.', 'cta' => 'Open', 'live' => '', 'color' => 'from-brand-700 via-brand-600 to-accent-500', 'href' => 'http://172.16.172.115'],
-                        ['icon' => 'photo', 'title' => 'DhakaMovies', 'desc' => 'Vast collection of movies & hits.', 'cta' => 'Browse movies', 'live' => '', 'color' => 'from-violet-700 via-purple-600 to-fuchsia-500', 'href' => 'http://dhakamovie.com/'],
-                        ['icon' => 'photo', 'title' => 'CTGMovies', 'desc' => 'Movies & shows for Chittagong.', 'cta' => 'Browse movies', 'live' => '', 'color' => 'from-indigo-700 via-indigo-600 to-brand-500', 'href' => 'http://ctgmovies.com/'],
-                        ['icon' => 'sparkles', 'title' => 'CrazyCTG', 'desc' => 'Unique & trending content.', 'cta' => 'Explore', 'live' => '', 'color' => 'from-amber-500 via-orange-500 to-red-500', 'href' => 'https://crazyctg.com/'],
-                        ['icon' => 'server', 'title' => 'SAM-FTP', 'desc' => 'High-speed FTP media server.', 'cta' => 'Open', 'live' => '', 'color' => 'from-slate-800 via-slate-700 to-brand-700', 'href' => 'http://172.16.50.4/'],
-                        ['icon' => 'signal', 'title' => 'FM Radio', 'desc' => 'Wide variety of FM radio stations.', 'cta' => 'Listen', 'live' => '', 'color' => 'from-teal-600 via-emerald-600 to-green-500', 'href' => 'https://radio-bd.com/'],
-                        ['icon' => 'newspaper', 'title' => 'Newspapers', 'desc' => 'Latest news from Bangla newspapers.', 'cta' => 'Read', 'live' => '', 'color' => 'from-emerald-700 via-green-600 to-lime-500', 'href' => 'https://www.allbanglanewspaper.xyz/'],
+                        ['icon' => 'tv', 'title' => 'Live TV', 'desc' => 'Live broadcasts & channels.', 'cta' => 'Watch now', 'live' => '1', 'color' => 'from-brand-700 via-brand-600 to-accent-500', 'href' => 'http://10.91.91.91'],
+                        ['icon' => 'tv', 'title' => 'Live TV 2', 'desc' => 'Live broadcasts & channels, alternate server.', 'cta' => 'Watch now', 'live' => '1', 'color' => 'from-indigo-700 via-indigo-600 to-brand-500', 'href' => 'http://10.91.91.91/index2.html'],
+                        ['icon' => 'globe', 'title' => 'TV Web', 'desc' => 'Web-based TV content & shows.', 'cta' => 'Open', 'live' => '', 'color' => 'from-sky-600 via-sky-500 to-cyan-400', 'href' => 'http://172.16.172.115'],
+                        ['icon' => 'photo', 'title' => 'DhakaMovies', 'desc' => 'Vast collection of movies & hits.', 'cta' => 'Browse movies', 'live' => '', 'color' => 'from-slate-800 via-slate-700 to-brand-700', 'href' => 'http://dhakamovie.com/'],
+                        ['icon' => 'photo', 'title' => 'CTGMovies', 'desc' => 'Movies & shows for Chittagong.', 'cta' => 'Browse movies', 'live' => '', 'color' => 'from-brand-700 via-brand-600 to-accent-500', 'href' => 'http://ctgmovies.com/'],
+                        ['icon' => 'sparkles', 'title' => 'CrazyCTG', 'desc' => 'Unique & trending content.', 'cta' => 'Explore', 'live' => '', 'color' => 'from-indigo-700 via-indigo-600 to-brand-500', 'href' => 'https://crazyctg.com/'],
+                        ['icon' => 'server', 'title' => 'SAM-FTP', 'desc' => 'High-speed FTP media server.', 'cta' => 'Open', 'live' => '', 'color' => 'from-sky-600 via-sky-500 to-cyan-400', 'href' => 'http://172.16.50.4/'],
+                        ['icon' => 'signal', 'title' => 'FM Radio', 'desc' => 'Wide variety of FM radio stations.', 'cta' => 'Listen', 'live' => '', 'color' => 'from-slate-800 via-slate-700 to-brand-700', 'href' => 'https://radio-bd.com/'],
+                        ['icon' => 'newspaper', 'title' => 'Newspapers', 'desc' => 'Latest news from Bangla newspapers.', 'cta' => 'Read', 'live' => '', 'color' => 'from-brand-700 via-brand-600 to-accent-500', 'href' => 'https://www.allbanglanewspaper.xyz/'],
                     ],
                     'fields' => [
                         'title' => ['label' => 'Title', 'type' => 'text'],
@@ -156,11 +151,70 @@ return [
                             'from-slate-800 via-slate-700 to-brand-700' => 'Dark slate',
                             'from-teal-600 via-emerald-600 to-green-500' => 'Teal / green',
                             'from-emerald-700 via-green-600 to-lime-500' => 'Green / lime',
-                            'from-sky-600 via-cyan-500 to-teal-400' => 'Sky / aqua',
+                            'from-sky-600 via-sky-500 to-cyan-400' => 'Sky / aqua',
                             'from-yellow-500 via-amber-500 to-orange-600' => 'Gold / yellow',
                         ]],
                     ],
                 ],
+            ],
+        ],
+        [
+            'title' => 'Video / features section',
+            'fields' => [
+                'home.video.image' => ['label' => 'Picture', 'type' => 'image', 'default' => '/images/stock/couple-selfie-tablet.jpg'],
+                'home.video.url' => ['label' => 'Video link (YouTube etc.)', 'type' => 'url', 'default' => '', 'help' => 'Leave empty to hide the play button.'],
+                'home.video.title' => ['label' => 'Heading', 'type' => 'text', 'default' => 'Experience the magic of EasyLink internet'],
+                'home.video.text' => ['label' => 'Text', 'type' => 'textarea', 'default' => 'From blazing-fast speeds to seamless connectivity — stream, game, work and study without a worry. Your gateway to the digital world.'],
+                'home.video.stats' => [
+                    'label' => 'Highlights',
+                    'type' => 'list',
+                    'default' => [
+                        ['value' => '100 Mbps', 'label' => 'YouTube'],
+                        ['value' => '100 Mbps', 'label' => 'Facebook'],
+                        ['value' => 'Uncap', 'label' => 'BDIX'],
+                    ],
+                    'fields' => [
+                        'value' => ['label' => 'Big text', 'type' => 'text'],
+                        'label' => ['label' => 'Small text', 'type' => 'text'],
+                    ],
+                ],
+                'home.video.button' => ['label' => 'Button label', 'type' => 'text', 'default' => 'Try us free'],
+                'home.video.button_link' => ['label' => 'Button link', 'type' => 'url', 'default' => '/packages'],
+            ],
+        ],
+        [
+            'title' => 'Call-to-action banner',
+            'fields' => [
+                'home.cta.image' => ['label' => 'Background picture', 'type' => 'image', 'default' => '/images/stock/team-laptop.jpg'],
+                'home.cta.title' => ['label' => 'Heading', 'type' => 'text', 'default' => 'Need fast & secure broadband? Use EasyLink internet.'],
+                'home.cta.button' => ['label' => 'Button label', 'type' => 'text', 'default' => 'View our plans'],
+                'home.cta.button_link' => ['label' => 'Button link', 'type' => 'url', 'default' => '/packages'],
+                'home.cta.or' => ['label' => 'Word between the buttons', 'type' => 'text', 'default' => 'or'],
+            ],
+        ],
+        [
+            'title' => 'Affordable price promo',
+            'fields' => [
+                'home.promo.title' => ['label' => 'Heading', 'type' => 'text', 'default' => 'Get broadband at a very affordable price'],
+                'home.promo.text' => ['label' => 'Text', 'type' => 'textarea', 'default' => 'Fast, stable internet that does not break the bank. Pick a plan, get connected, and enjoy unlimited browsing with friendly 24/7 support.'],
+                'home.promo.currency' => ['label' => 'Currency sign', 'type' => 'text', 'default' => '৳'],
+                'home.promo.price' => ['label' => 'Price', 'type' => 'text', 'default' => '525'],
+                'home.promo.period' => ['label' => 'Text after the price', 'type' => 'text', 'default' => 'per month'],
+                'home.promo.note' => ['label' => 'Small text next to the price', 'type' => 'text', 'default' => 'VAT included'],
+                'home.promo.button' => ['label' => 'Button label', 'type' => 'text', 'default' => 'Get started'],
+                'home.promo.button_link' => ['label' => 'Button link', 'type' => 'url', 'default' => '/packages'],
+                'home.promo.image' => ['label' => 'Picture', 'type' => 'image', 'default' => '/images/stock/router-wifi.jpg'],
+            ],
+        ],
+        [
+            'title' => 'FAQ and coverage',
+            'fields' => [
+                'home.faq.title' => ['label' => 'FAQ heading (questions are edited in Admin → FAQs)', 'type' => 'text', 'default' => 'Frequently asked questions'],
+                'home.coverage.image' => ['label' => 'Coverage picture', 'type' => 'image', 'default' => '/images/pages/coverage-city.jpg'],
+                'home.coverage.title' => ['label' => 'Coverage heading', 'type' => 'text', 'default' => 'We are everywhere'],
+                'home.coverage.text' => ['label' => 'Coverage text', 'type' => 'textarea', 'default' => 'Check whether EasyLink is available in your district and area.'],
+                'home.coverage.button' => ['label' => 'Coverage button label', 'type' => 'text', 'default' => 'Check your network coverage'],
+                'home.coverage.button_link' => ['label' => 'Coverage button link', 'type' => 'url', 'default' => '/coverage'],
             ],
         ],
         [

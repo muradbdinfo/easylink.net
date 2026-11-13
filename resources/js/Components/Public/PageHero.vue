@@ -29,7 +29,7 @@ const icon = computed(() => field('icon'));
         <!-- picture -->
         <div v-if="image" class="absolute inset-0 bg-cover bg-center" :style="{ backgroundImage: `url('${image}')` }" />
         <!-- readability overlay -->
-        <div class="absolute inset-0 bg-gradient-to-b from-brand-900/80 via-[#1e1b6b]/65 to-violet-900/90" />
+        <div class="absolute inset-0 bg-gradient-to-b from-brand-900/80 via-brand-800/65 to-violet-900/90" />
         <div class="absolute inset-0 bg-gradient-to-r from-brand-900/70 via-transparent to-brand-900/40" />
         <div class="grid-bg absolute inset-0 opacity-40 [mask-image:radial-gradient(ellipse_at_center,black,transparent_75%)]" />
         <div class="pointer-events-none absolute -top-24 right-0 h-72 w-72 rounded-full bg-fuchsia-500/30 blur-3xl" />

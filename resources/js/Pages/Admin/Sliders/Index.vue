@@ -24,6 +24,11 @@ const form = useForm({
     image: null,
     button_text: '',
     button_link: '',
+    speed_value: '',
+    speed_unit: '',
+    download: '',
+    upload: '',
+    latency: '',
     order: 0,
     is_active: true,
 });
@@ -42,6 +47,11 @@ const openEdit = (slider) => {
     form.image = null;
     form.button_text = slider.button_text;
     form.button_link = slider.button_link;
+    form.speed_value = slider.speed_value ?? '';
+    form.speed_unit = slider.speed_unit ?? '';
+    form.download = slider.download ?? '';
+    form.upload = slider.upload ?? '';
+    form.latency = slider.latency ?? '';
     form.order = slider.order;
     form.is_active = slider.is_active;
     form.clearErrors();
@@ -133,6 +143,32 @@ const destroy = (slider) => {
                         <div>
                             <InputLabel value="Button link" />
                             <TextInput v-model="form.button_link" class="mt-1 w-full" placeholder="/packages" />
+                        </div>
+                    </div>
+                    <div class="rounded-xl border border-slate-200 p-4">
+                        <p class="text-sm font-semibold text-slate-700">Live speed card (this slide)</p>
+                        <p class="mb-3 text-xs text-slate-500">Leave blank to use the default from Page content.</p>
+                        <div class="grid grid-cols-2 gap-4">
+                            <div>
+                                <InputLabel value="Big number" />
+                                <TextInput v-model="form.speed_value" class="mt-1 w-full" placeholder="35" />
+                            </div>
+                            <div>
+                                <InputLabel value="Unit" />
+                                <TextInput v-model="form.speed_unit" class="mt-1 w-full" placeholder="Mbps" />
+                            </div>
+                            <div>
+                                <InputLabel value="Download" />
+                                <TextInput v-model="form.download" class="mt-1 w-full" placeholder="35 Mbps" />
+                            </div>
+                            <div>
+                                <InputLabel value="Upload" />
+                                <TextInput v-model="form.upload" class="mt-1 w-full" placeholder="35 Mbps" />
+                            </div>
+                            <div>
+                                <InputLabel value="Latency" />
+                                <TextInput v-model="form.latency" class="mt-1 w-full" placeholder="4 ms" />
+                            </div>
                         </div>
                     </div>
                     <div>

@@ -2,32 +2,51 @@
 @plugin '@tailwindcss/forms';
 
 @theme {
-    --font-sans: 'Inter', ui-sans-serif, system-ui, sans-serif;
-    --font-display: 'Plus Jakarta Sans', 'Inter', ui-sans-serif, system-ui, sans-serif;
+    --font-sans: 'Rubik', 'Noto Sans Bengali', ui-sans-serif, system-ui, sans-serif;
+    --font-body: 'Roboto', 'Noto Sans Bengali', ui-sans-serif, system-ui, sans-serif;
+    --font-display: 'Roboto Slab', 'Noto Serif Bengali', 'Rubik', ui-serif, Georgia, serif;
 
-    /* Brand: EasyLink blue (matches logo) */
-    --color-brand-50: #eff6ff;
-    --color-brand-100: #dbeafe;
-    --color-brand-200: #bfdbfe;
-    --color-brand-300: #93c5fd;
-    --color-brand-400: #60a5fa;
-    --color-brand-500: #2f7bf0;
-    --color-brand-600: #1d63d8;
-    --color-brand-700: #1a4fb0;
-    --color-brand-800: #13367a;
-    --color-brand-900: #0b1b3f;
+    /* Brand: deep navy (IQTEL-style dark sections, links, price box) */
+    --color-brand-50: #eef3ff;
+    --color-brand-100: #dce6ff;
+    --color-brand-200: #b9ccff;
+    --color-brand-300: #8aa9f5;
+    --color-brand-400: #5a82e6;
+    --color-brand-500: #2f5fd0;
+    --color-brand-600: #1c47b3;
+    --color-brand-700: #0f3f8f;
+    --color-brand-800: #0a2b66;
+    --color-brand-900: #051b39;
 
-    /* Accent: logo cyan */
-    --color-accent-100: #e0f2fe;
-    --color-accent-300: #7dd3fc;
-    --color-accent-400: #38bdf8;
-    --color-accent-500: #0891e0;
-    --color-accent-600: #0773b8;
-    --color-accent-700: #075985;
+    /* Accent: EasyLink logo sky blue (buttons, prices, badges) */
+    --color-accent-100: #e3f2fc;
+    --color-accent-300: #8cc6f7;
+    --color-accent-400: #3aa0ee;
+    --color-accent-500: #0b78d8;
+    --color-accent-600: #0861b5;
+    --color-accent-700: #064a8a;
 
-    /* Extra jewel tones for a richer, more colourful look */
-    --color-violet-grad: #7c3aed;
-    --color-fuchsia-grad: #d946ef;
+    /* Old purple/pink utilities resolve to the logo blues, so every existing gradient follows the brand */
+    --color-violet-50: #eef7fd;
+    --color-violet-100: #dcedfa;
+    --color-violet-200: #bddcf4;
+    --color-violet-300: #8cc4ec;
+    --color-violet-400: #3aa0ee;
+    --color-violet-500: #0b78d8;
+    --color-violet-600: #0861b5;
+    --color-violet-700: #064a8a;
+    --color-violet-800: #0b3f63;
+    --color-violet-900: #082c46;
+    --color-fuchsia-100: #dce6ff;
+    --color-fuchsia-300: #8aa9f5;
+    --color-fuchsia-400: #5a82e6;
+    --color-fuchsia-500: #2f5fd0;
+    --color-fuchsia-600: #1c47b3;
+    --color-fuchsia-700: #123a8f;
+    --color-fuchsia-800: #0d2a6b;
+
+    --color-violet-grad: #0b78d8;
+    --color-fuchsia-grad: #1c47b3;
     --color-sun-300: #fcd34d;
     --color-sun-400: #fbbf24;
     --color-sun-500: #f59e0b;
@@ -41,11 +60,14 @@
 
     body {
         @apply bg-white text-slate-600 antialiased;
-        background-image: radial-gradient(60rem 30rem at 100% 0%, rgb(124 58 237 / 0.04), transparent), radial-gradient(50rem 30rem at 0% 40%, rgb(8 145 224 / 0.04), transparent);
     }
 
     ::selection {
-        background: rgb(124 58 237 / 0.2);
+        background: rgb(11 120 216 / 0.2);
+    }
+
+    p {
+        font-family: var(--font-body);
     }
 
     h1, h2, h3, h4 {
@@ -55,11 +77,11 @@
 
 @layer utilities {
     .container-x {
-        @apply mx-auto max-w-7xl px-4 sm:px-6 lg:px-8;
+        @apply mx-auto max-w-[1480px] px-4 sm:px-6 lg:px-10;
     }
 
     .btn-primary {
-        @apply inline-flex items-center justify-center gap-2 rounded-full bg-gradient-to-r from-accent-400 via-violet-500 to-fuchsia-500 bg-[length:200%_100%] bg-left px-6 py-3 text-sm font-semibold text-white shadow-lg shadow-violet-500/30 transition-all duration-300 hover:bg-right hover:shadow-fuchsia-500/40 disabled:opacity-60;
+        @apply inline-flex items-center justify-center gap-2 rounded-full bg-accent-500 px-7 py-3.5 text-sm font-medium uppercase tracking-wide text-white transition duration-200 hover:bg-accent-600 hover:shadow-lg hover:shadow-accent-500/30 disabled:opacity-60;
     }
 
     .btn-outline {
@@ -67,25 +89,46 @@
     }
 
     .btn-secondary {
-        @apply inline-flex items-center justify-center gap-2 rounded-full bg-gradient-to-r from-violet-700 via-fuchsia-600 to-rose-500 bg-[length:200%_100%] bg-left px-6 py-3 text-sm font-semibold text-white shadow-md shadow-fuchsia-500/25 transition-all duration-300 hover:bg-right hover:shadow-lg disabled:opacity-60;
+        @apply inline-flex items-center justify-center gap-2 rounded-full border-2 border-accent-500 bg-white px-7 py-3.5 text-sm font-medium uppercase tracking-wide text-accent-500 transition duration-200 hover:bg-accent-500 hover:text-white disabled:opacity-60;
+    }
+
+    .btn-primary:hover,
+    .btn-secondary:hover,
+    .btn-outline:hover {
+        translate: 0 -2px;
+    }
+
+    .btn-primary:active,
+    .btn-secondary:active,
+    .btn-outline:active {
+        translate: 0 0;
+        scale: 0.97;
+    }
+
+    .field:hover {
+        border-color: rgb(58 160 238);
     }
 
     .eyebrow {
-        @apply inline-flex items-center gap-2 rounded-full border border-violet-200 bg-gradient-to-r from-brand-50 to-violet-50 px-3.5 py-1 text-xs font-semibold uppercase tracking-wider text-violet-700 shadow-sm;
+        @apply inline-flex items-center gap-2 text-sm font-medium uppercase tracking-widest text-accent-500;
     }
 
     .eyebrow-dark {
-        @apply inline-flex items-center gap-2 rounded-full border border-white/20 bg-gradient-to-r from-white/15 to-violet-300/15 px-3.5 py-1 text-xs font-semibold uppercase tracking-wider text-sky-200 backdrop-blur;
+        @apply inline-flex items-center gap-2 rounded-full border border-white/25 bg-white/10 px-3.5 py-1 text-xs font-medium uppercase tracking-wider text-white backdrop-blur;
     }
 
     .section-title {
-        @apply text-3xl font-extrabold tracking-tight text-brand-900 sm:text-4xl;
+        @apply font-display text-3xl font-normal tracking-tight text-slate-900 sm:text-5xl;
     }
 
     /* little rainbow rule under section headings */
     .section-title::after {
         content: '';
-        @apply mt-4 block h-1 w-16 rounded-full bg-gradient-to-r from-accent-400 via-violet-500 to-rose-400;
+        @apply mt-4 block h-1 w-14 rounded-full bg-accent-500 transition-all duration-500;
+    }
+
+    section:hover .section-title::after {
+        width: 5.5rem;
     }
 
     .text-center .section-title::after {
@@ -93,27 +136,51 @@
     }
 
     .section-subtitle {
-        @apply mt-4 text-lg text-slate-500;
+        @apply mt-4 text-base text-slate-500 sm:text-lg;
     }
 
     .text-gradient {
-        @apply bg-gradient-to-r from-accent-500 via-violet-600 to-rose-500 bg-clip-text text-transparent;
+        @apply text-accent-500;
     }
 
     .text-gradient-light {
-        @apply bg-gradient-to-r from-sky-300 via-violet-300 to-amber-200 bg-clip-text text-transparent;
+        @apply text-white;
     }
 
     .card {
-        @apply rounded-3xl border border-slate-200/70 bg-white shadow-sm;
+        @apply rounded-xl border border-slate-200 bg-white shadow-sm transition duration-300;
+    }
+
+    /* every card lifts a little with a soft blue shadow; add .static to a card that must stay still (forms, panels) */
+    .card:not(form):not(.static):hover,
+    .hover-tile:hover {
+        translate: 0 -6px;
+        border-color: rgb(140 198 247);
+        box-shadow: 0 24px 48px -18px rgb(11 120 216 / 0.25);
+    }
+
+    .hover-tile {
+        transition: translate 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease, background-color 0.3s ease;
+    }
+
+    /* same idea for glass tiles on dark sections */
+    .hover-tile-dark {
+        transition: translate 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease, background-color 0.3s ease;
+    }
+
+    .hover-tile-dark:hover {
+        translate: 0 -6px;
+        background-color: rgb(255 255 255 / 0.14);
+        border-color: rgb(255 255 255 / 0.35);
+        box-shadow: 0 24px 48px -18px rgb(0 0 0 / 0.5);
     }
 
     .page-hero {
-        @apply relative overflow-hidden bg-gradient-to-br from-brand-900 via-[#2a1a7a] to-fuchsia-800 py-20 text-white;
+        @apply relative overflow-hidden bg-brand-900 py-20 text-white;
     }
 
     .rainbow-bar {
-        @apply h-1 w-full bg-gradient-to-r from-accent-400 via-violet-500 via-40% to-amber-400;
+        @apply h-1 w-full bg-accent-500;
     }
 
     .field {
@@ -143,5 +210,30 @@
 @media (prefers-reduced-motion: reduce) {
     .marquee-track {
         animation: none;
+    }
+}
+
+/* scroll reveal (see vReveal in Pages/Home.vue) */
+.reveal {
+    opacity: 0;
+    transform: translateY(26px);
+    transition: opacity 0.6s ease var(--d, 0ms), transform 0.6s ease var(--d, 0ms), translate 0.3s ease, scale 0.2s ease, box-shadow 0.3s ease, border-color 0.3s ease, background-color 0.3s ease;
+}
+
+.reveal.reveal-in {
+    opacity: 1;
+    transform: none;
+}
+
+/* soft blue glow that follows the mouse inside a service card */
+.service-glow {
+    background: radial-gradient(260px circle at var(--mx, 50%) var(--my, 50%), rgb(11 120 216 / 0.16), transparent 70%);
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .reveal {
+        opacity: 1;
+        transform: none;
+        transition: none;
     }
 }
