@@ -1,5 +1,16 @@
 # Changelog
 
+## 2026-11-14 — Title Case text
+
+### Changed
+- All public text now uses Title Case (first letter of every word capital): headings, buttons, labels, subtitles, paragraphs, FAQ and list items in `config/site_content/*.php`, plus the seeders and the content snapshot (`database/data/`). Links, paths, icons, colours, e-mails and camelCase words (e.g. `eBike`) are untouched.
+- "Free installation" is now "Free Installation" everywhere.
+- Entertainment cards renamed: "Dhaka Movies", "CTG Movies", "Crazy CTG".
+- Local database records (blog posts, FAQs, packages, services, sliders, stats, testimonials) were converted the same way.
+
+### Notes
+- Live databases keep saved content over new defaults. To bring the live site in line, edit in Admin or run `php artisan site:export` and deploy the generated migration.
+
 ## 2026-11-13 — iq-tel.net-style redesign
 
 ### Added

@@ -23,11 +23,11 @@ class UpdatePackagesSeeder extends Seeder
 
         $home = [
             ['TURBO', 35, 525, $social],
-            ['BOOST', 45, 630, ['Unlimited data', 'Free installation', '24/7 support', 'Free WiFi router', 'Priority support']],
+            ['BOOST', 45, 630, ['Unlimited data', 'Free Installation', '24/7 support', 'Free WiFi router', 'Priority support']],
             ['ULTRA', 55, 735, $social],
-            ['XPRESS', 80, 840, ['Unlimited data', 'Free installation', '24/7 support', 'Free WiFi router', 'Gaming optimized']],
+            ['XPRESS', 80, 840, ['Unlimited data', 'Free Installation', '24/7 support', 'Free WiFi router', 'Gaming optimized']],
             ['PRIME', 120, 1050, $social],
-            ['MEGA', 140, 1260, ['Unlimited data', 'Free installation', 'Dedicated support line', 'Free dual-band router', 'Streaming optimized']],
+            ['MEGA', 140, 1260, ['Unlimited data', 'Free Installation', 'Dedicated support line', 'Free dual-band router', 'Streaming optimized']],
             ['SUPER', 150, 1575, ['1 Dedicated IP', '100 Mbps YouTube', '100 Mbps Facebook', 'Uncap BDIX', 'Fixed Bandwidth', '24/7 Support']],
             ['HYPER', 220, 2100, $social],
         ];

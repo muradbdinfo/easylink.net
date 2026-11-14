@@ -24,7 +24,7 @@ A modern, English-language website and admin panel for an internet service provi
 - Contact message inbox (mark as read / delete)
 - Site settings (name, tagline, contact info, logo, social links, about text)
 
-**Page content** — every text, link, menu item, hero image and payment number is editable in Admin → Page content (schema files in `config/site_content/`). Nothing is hard-coded.
+**Page content** — every text, link, menu item, hero image and payment number is editable in Admin → Page content (schema files in `config/site_content/`). Nothing is hard-coded. **Text style:** write all public text in Title Case (every word starts with a capital letter, e.g. "Free Installation", "Get A Quote").
 
 **Auth** — Laravel Breeze (login, password reset, profile)
 

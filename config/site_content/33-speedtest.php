@@ -11,12 +11,12 @@ return [
         [
             'title' => 'Speed test',
             'fields' => [
-                'speedtest.heading' => ['label' => 'Heading', 'type' => 'text', 'default' => 'Check your internet speed'],
-                'speedtest.subtitle' => ['label' => 'Text under the heading', 'type' => 'textarea', 'default' => 'The test starts by itself. Close other downloads for the most accurate result.'],
+                'speedtest.heading' => ['label' => 'Heading', 'type' => 'text', 'default' => 'Check Your Internet Speed'],
+                'speedtest.subtitle' => ['label' => 'Text under the heading', 'type' => 'textarea', 'default' => 'The Test Starts By Itself. Close Other Downloads For The Most Accurate Result.'],
                 'speedtest.embed_url' => ['label' => 'Speed test address (embedded)', 'type' => 'url', 'default' => 'https://fast.com/', 'help' => 'The page shown inside the box. Use your own speed test server here if you have one.'],
                 'speedtest.embed_height' => ['label' => 'Box height in pixels', 'type' => 'text', 'default' => '560'],
-                'speedtest.open_label' => ['label' => 'Link text under the box (opens the test in a new tab)', 'type' => 'text', 'default' => 'Open the speed test in a new tab'],
-                'speedtest.note' => ['label' => 'Small print', 'type' => 'textarea', 'default' => 'Wi-Fi, other devices and your phone or computer can lower the result. For the real line speed, use a LAN cable.'],
+                'speedtest.open_label' => ['label' => 'Link text under the box (opens the test in a new tab)', 'type' => 'text', 'default' => 'Open The Speed Test In A New Tab'],
+                'speedtest.note' => ['label' => 'Small print', 'type' => 'textarea', 'default' => 'Wi-Fi, Other Devices And Your Phone Or Computer Can Lower The Result. For The Real Line Speed, Use A LAN Cable.'],
             ],
         ],
         [
@@ -26,9 +26,9 @@ return [
                     'label' => 'Tips',
                     'type' => 'list',
                     'default' => [
-                        ['icon' => 'wifi', 'title' => 'Use a cable if you can', 'text' => 'A LAN cable shows your real line speed; Wi-Fi is usually slower.'],
-                        ['icon' => 'device-phone-mobile', 'title' => 'Pause other devices', 'text' => 'Streaming, updates and downloads on other devices share the same line.'],
-                        ['icon' => 'headset', 'title' => 'Still slow?', 'text' => 'Call our support team and we will check your connection.'],
+                        ['icon' => 'wifi', 'title' => 'Use A Cable If You Can', 'text' => 'A LAN Cable Shows Your Real Line Speed; Wi-Fi Is Usually Slower.'],
+                        ['icon' => 'device-phone-mobile', 'title' => 'Pause Other Devices', 'text' => 'Streaming, Updates And Downloads On Other Devices Share The Same Line.'],
+                        ['icon' => 'headset', 'title' => 'Still Slow?', 'text' => 'Call Our Support Team And We Will Check Your Connection.'],
                     ],
                     'fields' => [
                         'icon' => ['label' => 'Icon', 'type' => 'icon'],

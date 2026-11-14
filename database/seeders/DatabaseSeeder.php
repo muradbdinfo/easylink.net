@@ -86,7 +86,7 @@ class DatabaseSeeder extends Seeder
         $this->call(UpdatePackagesSeeder::class);
 
         $corporate = [
-            ['name' => 'Corporate Starter', 'speed_mbps' => 20, 'price' => 5000, 'order' => 1, 'features' => ['1:1 dedicated bandwidth', '99.9% uptime SLA', '24/7 NOC support', 'Free installation']],
+            ['name' => 'Corporate Starter', 'speed_mbps' => 20, 'price' => 5000, 'order' => 1, 'features' => ['1:1 dedicated bandwidth', '99.9% uptime SLA', '24/7 NOC support', 'Free Installation']],
             ['name' => 'Corporate Business', 'speed_mbps' => 50, 'price' => 12000, 'order' => 2, 'features' => ['1:1 dedicated bandwidth', '99.9% uptime SLA', 'Redundant link option', 'Dedicated account manager']],
             ['name' => 'Corporate Enterprise', 'speed_mbps' => 100, 'price' => 22000, 'order' => 3, 'features' => ['1:1 dedicated bandwidth', '99.95% uptime SLA', 'Redundant dual links', 'DDoS protection']],
             ['name' => 'Corporate Ultimate', 'speed_mbps' => 200, 'price' => 40000, 'order' => 4, 'is_popular' => true, 'features' => ['1:1 dedicated bandwidth', '99.99% uptime SLA', 'Redundant dual links', 'DDoS protection', 'Dedicated account manager']],
