@@ -1,5 +1,10 @@
 # Changelog
 
+## 2026-11-15 — Live content overrides reset
+
+### Fixed
+- Entertainment cards (and any other Page content) saved earlier in the live Admin kept their old capitalisation, because saved values override config defaults. New migration `2026_11_15_000002_reset_old_cased_content_overrides` removes a saved value only when it matches the current default apart from case/spacing (e.g. "Browse movies", "DhakaMovies"), so the Title Case default shows. Text the owner really rewrote is left alone.
+
 ## 2026-11-15 — About text Title Case
 
 ### Changed
