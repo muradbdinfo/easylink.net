@@ -53,7 +53,7 @@ class DatabaseSeeder extends Seeder
             'address' => '17/4 College Road, Percival Hill, Chawkbazar, Chattogram-4203',
             'map_url' => 'https://maps.app.goo.gl/zebS1DMWdbscBFhn7?g_st=aw',
             'map_embed' => 'https://maps.google.com/maps?q=22.3545813,91.8367228&z=17&output=embed',
-            'about_text' => "EasyLink has been delivering dependable fiber-optic internet and corporate connectivity across Bangladesh since 2010. With our own nationwide backbone, a 24/7 Network Operations Center and a skilled technical team, we serve home and corporate customers in all 64 districts.\n\nOur promise is simple: fast, stable internet that just works, backed by people who pick up the phone.",
+            'about_text' => "EasyLink Has Been Delivering Dependable Fiber-Optic Internet And Corporate Connectivity Across Bangladesh Since 2010. With Our Own Nationwide Backbone, A 24/7 Network Operations Center And A Skilled Technical Team, We Serve Home And Corporate Customers In All 64 Districts.\n\nOur Promise Is Simple: Fast, Stable Internet That Just Works, Backed By People Who Pick Up The Phone.",
             'facebook_url' => 'https://www.facebook.com/elbd.net/',
             'youtube_url' => 'https://youtube.com/@easylinkbd',
             'linkedin_url' => 'https://linkedin.com/company/easylinkbd',

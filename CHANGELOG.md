@@ -1,5 +1,11 @@
 # Changelog
 
+## 2026-11-15 — About text Title Case
+
+### Changed
+- The About paragraph (`about_text`) is now Title Case in `DatabaseSeeder` and the content snapshot.
+- New migration `2026_11_15_000001_title_case_about_text` updates the live setting, but only if it still holds the untouched default text (case-insensitive); text edited in Admin is never overwritten.
+
 ## 2026-11-14 — Title Case text
 
 ### Changed
