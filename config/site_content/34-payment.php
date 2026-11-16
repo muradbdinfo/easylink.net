@@ -46,10 +46,10 @@ return [
             'fields' => [
                 'payment.qr.title' => ['label' => 'Heading', 'type' => 'text', 'default' => 'Pay By Scanning A Bangla QR'],
                 'payment.qr.text' => ['label' => 'Text', 'type' => 'textarea', 'default' => 'Scan With bKash Or Any Bank App That Supports Bangla QR. No Need To Type The Number.'],
-                'payment.qr.merchant_image' => ['label' => 'QR 1 — picture', 'type' => 'image', 'default' => '/banglaqr/bkash-bangla-qr.jpeg'],
+                'payment.qr.merchant_image' => ['label' => 'QR 1 — picture', 'type' => 'image', 'default' => '/images/banglaqr/bkash-bangla-qr.jpeg'],
                 'payment.qr.merchant_label' => ['label' => 'QR 1 — title', 'type' => 'text', 'default' => 'Merchant Payment QR'],
                 'payment.qr.merchant_caption' => ['label' => 'QR 1 — small text', 'type' => 'text', 'default' => 'Scan With The bKash App And Choose Payment'],
-                'payment.qr.send_image' => ['label' => 'QR 2 — picture', 'type' => 'image', 'default' => '/banglaqr/banglaqr-sendmony-bank.jpeg'],
+                'payment.qr.send_image' => ['label' => 'QR 2 — picture', 'type' => 'image', 'default' => '/images/banglaqr/banglaqr-sendmony-bank.jpeg'],
                 'payment.qr.send_label' => ['label' => 'QR 2 — title', 'type' => 'text', 'default' => 'Send Money QR'],
                 'payment.qr.send_caption' => ['label' => 'QR 2 — small text', 'type' => 'text', 'default' => 'Scan With bKash Or Any Bank App And Send Money'],
             ],
