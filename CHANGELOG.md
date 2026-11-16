@@ -1,5 +1,11 @@
 # Changelog
 
+## 2026-11-16 — Bangla QR on Payment page
+
+### Added
+- New "Bangla QR" section on `/payment` showing the Send Money and Merchant Payment QR codes side by side (tap to enlarge). QR images live in `public/banglaqr/`.
+- Heading, text, both pictures, titles and captions are editable in Admin → Page content → Payment → "Bangla QR".
+
 ## 2026-11-15 — Live content overrides reset
 
 ### Fixed

@@ -57,6 +57,12 @@ const copy = async (text, key) => {
     }, 1800);
 };
 
+const qrs = computed(() =>
+    [
+        { image: c('payment.qr.send_image'), label: c('payment.qr.send_label'), caption: c('payment.qr.send_caption') },
+        { image: c('payment.qr.merchant_image'), label: c('payment.qr.merchant_label'), caption: c('payment.qr.merchant_caption') },
+    ].filter((q) => q.image),
+);
 const methods = computed(() => list('payment.methods'));
 const steps = computed(() => list('payment.steps'));
 
@@ -163,8 +169,29 @@ const vReveal = {
             </div>
         </section>
 
+        <!-- Bangla QR -->
+        <section v-if="qrs.length" class="bg-white py-20 sm:py-24">
+            <div class="container-x">
+                <div v-reveal class="mx-auto max-w-2xl text-center">
+                    <h2 class="font-display text-3xl text-slate-900 sm:text-4xl">{{ c('payment.qr.title') }}</h2>
+                    <p class="section-subtitle">{{ c('payment.qr.text') }}</p>
+                </div>
+                <div class="mx-auto mt-12 grid max-w-3xl gap-8 sm:grid-cols-2">
+                    <figure v-for="(q, i) in qrs" :key="i" v-reveal="i * 120" class="flex flex-col items-center rounded-3xl border border-pink-100 bg-pink-50/40 p-6 text-center shadow-xl shadow-pink-900/5">
+                        <a :href="q.image" target="_blank" rel="noopener" class="block overflow-hidden rounded-2xl bg-white ring-1 ring-pink-100">
+                            <img :src="q.image" :alt="q.label" loading="lazy" class="mx-auto max-h-[28rem] w-auto object-contain" />
+                        </a>
+                        <figcaption class="mt-5">
+                            <p class="font-display text-xl text-slate-900">{{ q.label }}</p>
+                            <p v-if="q.caption" class="mt-1 text-sm leading-6 text-slate-500">{{ q.caption }}</p>
+                        </figcaption>
+                    </figure>
+                </div>
+            </div>
+        </section>
+
         <!-- other methods -->
-        <section v-if="methods.length" class="bg-white py-20 sm:py-24">
+        <section v-if="methods.length" class="bg-slate-50 py-20 sm:py-24">
             <div class="container-x">
                 <h2 v-reveal class="text-center font-display text-3xl text-slate-900 sm:text-4xl">{{ c('payment.methods_title') }}</h2>
                 <div class="mx-auto mt-12 grid max-w-6xl gap-6 md:grid-cols-2 lg:grid-cols-3">
@@ -199,7 +226,7 @@ const vReveal = {
         </section>
 
         <!-- how it works -->
-        <section v-if="steps.length" class="bg-slate-50 py-20 sm:py-24">
+        <section v-if="steps.length" class="bg-white py-20 sm:py-24">
             <div class="container-x">
                 <h2 v-reveal class="text-center font-display text-3xl text-slate-900 sm:text-4xl">{{ c('payment.steps_title') }}</h2>
                 <div class="mx-auto mt-12 grid max-w-5xl gap-8 md:grid-cols-3">
